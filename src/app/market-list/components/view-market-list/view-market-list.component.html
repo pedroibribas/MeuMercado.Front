@@ -1,0 +1,56 @@
+<h1>Lista do Mercado</h1>
+
+<p>Mostrando lista do mercado</p>
+
+<div>{{ marketList.createdAt }}</div>
+
+<table class="table font-monospace">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">#</th>
+            <th scope="col">Produto</th>
+            <th scope="col">Marca</th>
+            <th scope="col">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="let p of viewedProducts; index as i" 
+            [class.text-decoration-line-through]="!p.isPending"
+        >
+            <th scope="row">{{ i+1 }}</th>
+            <td>
+                <app-select-product-button
+                    [isProductSelected]="p.isSelected"
+                    (newIsProductSelectedEvent)="toggleProductSelection(i)"
+                ></app-select-product-button>
+            </td>
+            <td class="text-wrap">{{ p.name }}</td>
+            <td class="text-wrap">{{ p.brand }}</td>            
+            <td>
+                <app-toggle-product-pendency-button
+                    [isProductPending]="p.isPending"
+                    (newIsProductPendingEvent)="toggleProductPending(i)"
+                ></app-toggle-product-pendency-button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div *ngIf="!hasProductsToShow()">
+    Nenhum produto para mostrar conforme a opção de filtro.
+</div>
+
+<app-filter-buttons 
+    [allProducts]="marketList.products" 
+    (newViewedProductsEvent)="setProductsViewed($event)"
+></app-filter-buttons>
+
+<button type="button" class="m-2">
+    Gravar
+</button>
+
+<button type="button" class="m-2">
+    Editar
+</button>

@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
-import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
 import { MarketListComponent } from './market-list.component';
 import { MarketListRoutingModule } from './market-list.routing.module';
-import { FilterOptionsComponent } from './view-market-list/filter-options/filter-options.component';
+import { ViewMarketListComponent } from './components/view-market-list/view-market-list.component';
+import { FilterButtonsComponent } from './components/view-market-list/components/filter-buttons/filter-buttons.component';
+import { SelectProductButtonComponent } from './components/view-market-list/components/select-product-button/select-product-button.component';
+import { ToggleProductPendencyButtonComponent } from './components/view-market-list/components/toggle-product-pendency-button/toggle-product-pendency-button.component';
 
 
 
 @NgModule({
   declarations: [
-    ViewMarketListComponent,
     MarketListComponent,
-    FilterOptionsComponent
+    ViewMarketListComponent,
+    FilterButtonsComponent,
+    SelectProductButtonComponent,
+    ToggleProductPendencyButtonComponent
   ],
   imports: [
     CommonModule,
-    MarketListRoutingModule,
-    FormsModule
-  ]
+    MarketListRoutingModule
+  ],
 })
 export class MarketListModule { }
