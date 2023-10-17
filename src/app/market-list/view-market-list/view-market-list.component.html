@@ -1,0 +1,48 @@
+<h1>Lista do Mercado</h1>
+<p>Mostrando lista do mercado</p>
+
+<div>{{ marketList.createdAt }}</div>
+
+<table class="table font-monospace">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">#</th>
+      <th scope="col">Produto</th>
+      <th scope="col">Marca</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr 
+      *ngFor="let p of products; index as i"
+      [class.text-decoration-line-through]="!p.isPending"
+    >
+      <th scope="row">{{ i+1 }}</th>
+      <td>
+        <button type="button" (click)="toggleProductSelection(i)">
+            {{ p.isSelected
+                ? '_'
+                : 'X' }}
+        </button>
+      </td>
+      <td class="text-wrap">{{ p.name }}</td>
+      <td class="text-wrap">{{ p.brand }}</td>
+      <td>
+        <button type="button" (click)="toggleProductPending(i)">
+            {{ p.isPending
+              ? '_'
+              : 'X' }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!hasProductsToShow()">
+  Nenhum produto para mostrar conforme a opção de filtro.
+</div>
+
+<button type="button" class="m-2">
+  Editar
+</button>
