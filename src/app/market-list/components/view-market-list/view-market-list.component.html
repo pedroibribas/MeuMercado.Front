@@ -1,8 +1,7 @@
-<h1>Lista do Mercado</h1>
-
-<p>Mostrando lista do mercado</p>
-
-<div>{{ marketList.createdAt }}</div>
+<header class="m-3">
+    <h1>Lista do Mercado</h1>
+    <p>Mostrando a lista do mercado deste navegador.</p>
+</header>
 
 <table class="table font-monospace">
     <thead>
@@ -23,7 +22,7 @@
             <td>
                 <app-select-product-button
                     [isProductSelected]="p.isSelected"
-                    (newIsProductSelectedEvent)="toggleProductSelection(i)"
+                    (newIsProductSelectedEvent)="toggleProductSelectionById(p.id)"
                 ></app-select-product-button>
             </td>
             <td class="text-wrap">{{ p.name }}</td>
@@ -31,7 +30,7 @@
             <td>
                 <app-toggle-product-pendency-button
                     [isProductPending]="p.isPending"
-                    (newIsProductPendingEvent)="toggleProductPending(i)"
+                    (newIsProductPendingEvent)="toggleProductPendingById(p.id)"
                 ></app-toggle-product-pendency-button>
             </td>
         </tr>
@@ -42,15 +41,19 @@
     Nenhum produto para mostrar conforme a opção de filtro.
 </div>
 
+<app-file-input
+    (newFileDataAsStringEvent)="setProductsByImportedData($event)"
+></app-file-input>
+
 <app-filter-buttons 
-    [allProducts]="marketList.products" 
+    [allProducts]="marketList.products"
     (newViewedProductsEvent)="setProductsViewed($event)"
 ></app-filter-buttons>
 
-<button type="button" class="m-2">
-    Gravar
+<button type="button" class="m-2" (click)="storeMarketList()">
+    Salvar lista
 </button>
 
-<button type="button" class="m-2">
-    Editar
+<button type="button" class="m-2" (click)="removeStoredMarketList()">
+    Deletar todos os produtos
 </button>

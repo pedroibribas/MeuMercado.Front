@@ -22,10 +22,10 @@ export class FilterButtonsComponent {
   }
 
   private getSelectedProducts(): Product[] {
-    return this.allProducts.filter((p) => !p.isSelected);
+    return this.allProducts.filter((p) => p.isSelected);
   }
 
   private getPendingProducts(): Product[] {
-    return this.allProducts.filter((p) => !p.isSelected && p.isPending);
+    return this.allProducts.filter((p) => p.isSelected && p.isPending);
   }
 }

@@ -5,4 +5,5 @@ export interface Product {
     name: string;
     brand: string;
     amount: string;
+    type: string;
 }
