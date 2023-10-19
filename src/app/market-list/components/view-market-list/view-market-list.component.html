@@ -20,10 +20,10 @@
         >
             <th scope="row">{{ i+1 }}</th>
             <td>
-                <app-select-product-button
+                <app-product-selection-button
                     [isProductSelected]="p.isSelected"
                     (newIsProductSelectedEvent)="toggleProductSelectionById(p.id)"
-                ></app-select-product-button>
+                ></app-product-selection-button>
             </td>
             <td class="text-wrap">{{ p.name }}</td>
             <td class="text-wrap">{{ p.brand }}</td>            

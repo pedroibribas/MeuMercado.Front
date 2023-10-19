@@ -1,0 +1,12 @@
+<button
+    type="button"
+    class="btn p-0 lh-1"
+    (click)="toggleIsProductSelected()"
+>
+    <fa-icon
+        *ngIf="isProductSelected"
+        [icon]="faSquare"></fa-icon>
+    <fa-icon
+        *ngIf="!isProductSelected"
+        [icon]="faSquareCheck"></fa-icon>
+</button>

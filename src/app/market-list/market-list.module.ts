@@ -5,9 +5,10 @@ import { MarketListComponent } from './market-list.component';
 import { MarketListRoutingModule } from './market-list.routing.module';
 import { ViewMarketListComponent } from './components/view-market-list/view-market-list.component';
 import { FilterButtonsComponent } from './components/view-market-list/components/filter-buttons/filter-buttons.component';
-import { SelectProductButtonComponent } from './components/view-market-list/components/select-product-button/select-product-button.component';
+import { ProductSelectionButtonComponent } from './components/view-market-list/components/select-product-button/product-selection-button.component';
 import { ToggleProductPendencyButtonComponent } from './components/view-market-list/components/toggle-product-pendency-button/toggle-product-pendency-button.component';
 import { FileInputComponent } from './components/view-market-list/components/file-input/file-input.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -16,13 +17,14 @@ import { FileInputComponent } from './components/view-market-list/components/fil
     MarketListComponent,
     ViewMarketListComponent,
     FilterButtonsComponent,
-    SelectProductButtonComponent,
+    ProductSelectionButtonComponent,
     ToggleProductPendencyButtonComponent,
     FileInputComponent
   ],
   imports: [
     CommonModule,
-    MarketListRoutingModule
+    MarketListRoutingModule,
+    FontAwesomeModule
   ],
 })
 export class MarketListModule { }
