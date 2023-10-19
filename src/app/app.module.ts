@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { ReadFileService } from './shared/services/read-file.service';
 import { FileInputService } from './shared/services/utils/file-input.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -16,8 +15,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    FontAwesomeModule
+    HttpClientModule
   ],
   providers: [
     FileInputService,
