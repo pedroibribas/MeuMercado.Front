@@ -16,7 +16,7 @@ export class ViewMarketListService{
     this.localStorageService.saveMarketList(marketList);
   }
 
-  public getStoredMarketList(): MarketList {
+  public getStoredMarketList(): MarketList | null {
     return this.localStorageService.getMarketList();
   }
 

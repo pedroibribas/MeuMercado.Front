@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { ReadFileService } from "src/app/shared/services/read-file.service";
-import { FileInputService } from "src/app/shared/services/utils/file-input.service";
+import { FileInputService } from "src/app/shared/services/file-input.service";
 
 @Component({
   selector: 'app-file-input',

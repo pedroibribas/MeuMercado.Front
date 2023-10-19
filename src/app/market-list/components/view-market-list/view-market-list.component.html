@@ -50,10 +50,24 @@
     (newViewedProductsEvent)="setProductsViewed($event)"
 ></app-filter-buttons>
 
-<button type="button" class="m-2" (click)="storeMarketList()">
-    Salvar lista
-</button>
+<button
+    type="button"
+    class="btn btn-primary"
+    (click)="toggleIsAddProductModal(true)"
+>Adicionar produto</button>
 
-<button type="button" class="m-2" (click)="removeStoredMarketList()">
+<app-add-product-modal
+    [marketList]="marketList"
+    [isModalOpen]="isAddProductModalOpen"
+    (closeModalEvent)="toggleIsAddProductModal(false)"
+    (newProductEvent)="updateView()"
+></app-add-product-modal>
+
+<!-- <button type="button" class="m-2" (click)="storeMarketList()">
+    Salvar lista
+</button> -->
+
+<!-- <button type="button" class="m-2" (click)="removeStoredMarketList()">
     Deletar todos os produtos
-</button>
+</button> -->
+
