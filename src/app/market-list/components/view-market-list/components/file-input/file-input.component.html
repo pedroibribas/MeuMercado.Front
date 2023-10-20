@@ -1,6 +1,9 @@
-<input
-    type="file"
-    (change)="readTextFile($event)"
-    name="file"
-    id="file"
->
+<div>
+    <label class="btn" for="file">Upload</label>
+    <input
+        class="visually-hidden"
+        type="file"
+        name="file"
+        id="file">
+        (change)="readTextFile($event)"
+</div>

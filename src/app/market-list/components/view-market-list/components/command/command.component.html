@@ -1,15 +1,40 @@
-<button
+<footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group dropup" role="group">
+            <button type="button" class="btn px-3" data-bs-toggle="dropdown">
+                <fa-icon class="fs-1" [icon]="faFileArrowDown"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item">
+                        <app-file-input
+                            (newFileDataAsStringEvent)="setProductsByImportedData($event)"
+                        ></app-file-input>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <app-export-file-button
+                        ></app-export-file-button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!-- <button
     type="button"
 ></button>
+
+<button
+    type="button"
+></button> -->
 
 <!-- <app-filter-buttons 
     [allProducts]="marketList.products"
     (newViewedProductsEvent)="setProductsViewed($event)"
 ></app-filter-buttons> -->
-
-<button
-    type="button"
-></button>
 
 <!-- <button
     type="button"
@@ -18,22 +43,13 @@
 >Adicionar produto</button> -->
 
 
-<div>
-    <app-file-input
-        (newFileDataAsStringEvent)="setProductsByImportedData($event)"
-    ></app-file-input>
-
-    <app-export-file-button
-    ></app-export-file-button>
-</div>
-
-<div>    
-    <!-- <button type="button" class="m-2" (click)="storeMarketList()"
-    >Salvar lista</button> -->
+<!-- <div>
+    <button type="button" class="m-2" (click)="storeMarketList()"
+    >Salvar lista</button>
     
-    <!-- <button type="button" class="m-2" (click)="removeStoredMarketList()"
-    >Deletar todos os produtos</button> -->
-</div>
+    <button type="button" class="m-2" (click)="removeStoredMarketList()"
+    >Deletar todos os produtos</button>
+</div> -->
 
 <!-- <app-add-product-modal
     [marketList]="marketList"
