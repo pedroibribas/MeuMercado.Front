@@ -67,12 +67,12 @@ export class AddProductModalComponent implements OnInit {
     newProduct.isSelected = true;
     newProduct.isPending = true;
 
-    // this.addProductModalService
-    //   .from(this.marketList)
-    //   .store(newProduct);
+    this.addProductModalService
+      .from(this.marketList)
+      .store(newProduct);
 
     this.alertService.success(`${newProduct.name} adicionado.`);
-    // this.newProductForm.reset();
+    this.newProductForm.reset();
     this.newProductEvent.emit();
   }
 
