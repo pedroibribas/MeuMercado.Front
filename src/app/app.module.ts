@@ -8,6 +8,7 @@ import { ReadFileService } from './shared/services/read-file.service';
 import { FileInputService } from './shared/services/file-input.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { AlertModule } from './components/alert/alert.module';
+import { ExportFileService } from './shared/services/export-file.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AlertModule } from './components/alert/alert.module';
   providers: [
     FileInputService,
     ReadFileService,
-    LocalStorageService
+    ExportFileService,
+    LocalStorageService,
   ],
   bootstrap: [AppComponent]
 })

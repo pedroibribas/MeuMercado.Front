@@ -19,4 +19,12 @@ export class AlertService {
         message
       }));
   }
+    
+  public error(message: string) {
+    this.subject
+      .next(new Alert({
+        type: AlertType.Error,
+        message
+      }));
+  }
 }
