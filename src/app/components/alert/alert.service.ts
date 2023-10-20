@@ -9,19 +9,14 @@ export class AlertService {
   private subject = new Subject<Alert>();
 
   public onAlert(): Observable<Alert> {
-    return this.subject.asObservable().pipe();
+    return this.subject.asObservable();
   }
   
   public success(message: string) {
-    this.subject.next(
-      new Alert({
+    this.subject
+      .next(new Alert({
         type: AlertType.Success,
         message
-      })
-    );
-  }
-
-  public clear() {
-    this.subject.next(new Alert());
+      }));
   }
 }

@@ -1,8 +1,9 @@
 <div
     *ngFor="let alert of alerts"
-    [class]="styleClasses(alert)"
+    [class]="alertClassesStr(alert)"
+    role="alert"
 >
-    <p>{{ alert.message }}</p>
+    {{ alert.message }}
     <button
         type="button"
         class="btn-close"

@@ -6,22 +6,23 @@ import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  providers: [AlertService]
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent implements OnInit, OnDestroy {
+
   public alerts: Alert[] = [];
+
   private alertSubscription!: Subscription;
   private routeSubscription!: Subscription;
 
   constructor(
     private alertService: AlertService,
     private router: Router
-  ) {}
+  ) { }
   
   ngOnInit(): void {
-    this.alertSubscription = this.handleAlert();
-    this.routeSubscription = this.clearAlertOnNavigation();
+    this.alertSubscription = this.setAlerts();
+    this.routeSubscription = this.resetAlertsOnNavigation();
   }
 
   ngOnDestroy(): void {
@@ -29,54 +30,45 @@ export class AlertComponent implements OnInit, OnDestroy {
     this.routeSubscription.unsubscribe();
   }
 
-  private handleAlert(): Subscription {
+  private setAlerts(): Subscription {
     return this.alertService.onAlert()
       .subscribe((alert) => {
-        if (!alert.message)
-          return;
-
-        this.alerts.push(alert);
-
-        setTimeout(() =>
-          this.removeAlert(alert), 3000);
+          this.alerts.push(alert);
+          setTimeout(() => this.removeAlert(alert), 3000);
       });
   }
 
-  private clearAlertOnNavigation(): Subscription {
+  private resetAlertsOnNavigation(): Subscription {
     return this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationStart)
-          this.alertService.clear();
+          this.alerts = [];
       });
   }
 
   public removeAlert(alert: Alert) {
-    if (!this.alerts.includes(alert))
-      return;
-
-    this.alerts = this.alerts.filter((a) =>
-      a !== alert);
+    if (this.alerts.includes(alert))
+      this.alerts = this.alerts.filter((a) => a !== alert);
   }
 
-  public styleClasses(alert: Alert) {
-    if (!alert)
-      return;
-
-    const classes = ['alert'];
-
-    const classByAlertType = {
-      [AlertType.Success]: 'alert-success',
-      [AlertType.Error]: 'alert-danger',
-      [AlertType.Info]: 'alert-info',
-      [AlertType.Warning]: 'alert-warning',
+  public alertClassesStr(alert: Alert): string {
+    if (alert) {
+      const classes = ['fixed-top alert alert-dismissible'];
+      const classByAlertType = {
+        [AlertType.Success]: 'alert-success',
+        [AlertType.Error]: 'alert-danger',
+        [AlertType.Info]: 'alert-info',
+        [AlertType.Warning]: 'alert-warning',
+      }
+  
+      if (alert.type !== undefined) {
+        classes.push(
+          classByAlertType[alert.type]
+        );
+      }
+  
+      return classes.join(' ');
     }
-
-    if (alert.type !== undefined) {
-      classes.push(
-        classByAlertType[alert.type]
-      );
-    }
-
-    return classes.join(' ');
+    return '';
   }
 }

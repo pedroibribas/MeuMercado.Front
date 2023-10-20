@@ -1,9 +1,10 @@
 export class Alert {
-  public type?: AlertType;
-  public message?: string;
+  public type: AlertType;
+  public message: string;
 
-  constructor(init?: Alert) {
-    Object.assign(this, init);
+  constructor(init: Alert) {
+    this.type = init.type;
+    this.message = init.message;
   }
 }
 
