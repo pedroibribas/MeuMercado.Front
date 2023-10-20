@@ -1,0 +1,42 @@
+<button
+    type="button"
+></button>
+
+<!-- <app-filter-buttons 
+    [allProducts]="marketList.products"
+    (newViewedProductsEvent)="setProductsViewed($event)"
+></app-filter-buttons> -->
+
+<button
+    type="button"
+></button>
+
+<!-- <button
+    type="button"
+    class="btn btn-primary"
+    (click)="toggleIsAddProductModal(true)"
+>Adicionar produto</button> -->
+
+
+<div>
+    <app-file-input
+        (newFileDataAsStringEvent)="setProductsByImportedData($event)"
+    ></app-file-input>
+
+    <app-export-file-button
+    ></app-export-file-button>
+</div>
+
+<div>    
+    <!-- <button type="button" class="m-2" (click)="storeMarketList()"
+    >Salvar lista</button> -->
+    
+    <!-- <button type="button" class="m-2" (click)="removeStoredMarketList()"
+    >Deletar todos os produtos</button> -->
+</div>
+
+<!-- <app-add-product-modal
+    [marketList]="marketList"
+    [isModalOpen]="isAddProductModalOpen"
+    (closeModalEvent)="toggleIsAddProductModal(false)"
+></app-add-product-modal> -->

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { AlertService } from "src/app/components/alert/alert.service";
 import { Product } from "src/app/market-list/shared/models/product";
+import { csvTable } from "../utils/format-to-csv.utils";
 
 @Injectable({
   providedIn: 'root'
@@ -10,18 +10,8 @@ export class ExportFileService {
   private fileExtension = '';
   private fileContentBlob?: Blob;
 
-  constructor(
-    private alertService: AlertService) { }
-
   public convertProductsToCsv(products: Product[]): this {
-    let content = '';
-
-    products.forEach((p) => {
-      let line = `${p.id},${p.name},${p.brand},${p.type},${p.amount},${p.isSelected},${p.isPending}\r\n`;
-      content += line;
-    });
-
-    this.fileContent = content;
+    this.fileContent = csvTable(products);
     this.fileExtension = 'csv';
     return this;
   }
@@ -32,16 +22,12 @@ export class ExportFileService {
   }
 
   public download(): void {
-    try {
-      const downloadElement: HTMLAnchorElement = document.createElement('a');
-      downloadElement.download = this.getFileName();
-      downloadElement.href = this.getDownloadUrlFromBlob();
-      document.body.appendChild(downloadElement);
-      downloadElement.click();
-      document.body.removeChild(downloadElement);
-    } catch (err: any) {
-      this.alertService.error(err);
-    }
+    const downloadElement: HTMLAnchorElement = document.createElement('a');
+    downloadElement.download = this.getFileName();
+    downloadElement.href = this.getDownloadUrlFromBlob();
+    document.body.appendChild(downloadElement);
+    downloadElement.click();
+    document.body.removeChild(downloadElement);
   }
 
   private getFileName(): string {

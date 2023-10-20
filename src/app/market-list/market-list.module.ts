@@ -11,6 +11,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProductSelectionButtonComponent } from './components/view-market-list/components/product-selection-button/product-selection-button.component';
 import { AddProductModalComponent } from './components/view-market-list/components/add-product-modal/add-product-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ExportFileButtonComponent } from './components/view-market-list/components/export-file-button/export-file-button.component';
+import { CommandComponent } from './components/view-market-list/components/command/command.component';
 
 
 
@@ -22,7 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ProductSelectionButtonComponent,
     ToggleProductPendencyButtonComponent,
     FileInputComponent,
-    AddProductModalComponent
+    ExportFileButtonComponent,
+    AddProductModalComponent,
+    CommandComponent
   ],
   imports: [
     CommonModule,
