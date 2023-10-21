@@ -3,8 +3,8 @@ import { ReadFileService } from "src/app/shared/services/read-file.service";
 import { FileInputService } from "src/app/shared/services/file-input.service";
 import { MarketListStore } from "src/app/market-list/shared/stores/market-list.store";
 import { csvToObjectArray } from "src/app/shared/utils/format-csv.utils";
-import { Product } from "src/app/market-list/shared/models/product";
-import { MarketList } from "src/app/market-list/shared/models/market-list";
+import { Product } from "src/app/shared/models/product";
+import { MarketList } from "src/app/shared/models/market-list";
 
 @Component({
   selector: 'app-import-file-input',

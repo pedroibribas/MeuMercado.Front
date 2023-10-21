@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { MarketList } from "../models/market-list";
+import { MarketList } from "../../../shared/models/market-list";
 import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 
 @Injectable({

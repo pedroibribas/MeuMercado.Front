@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MarketList } from "src/app/market-list/shared/models/market-list";
+import { MarketList } from "src/app/shared/models/market-list";
 
 const LocalStorageKey = "MeuMercado_MarketList";
 

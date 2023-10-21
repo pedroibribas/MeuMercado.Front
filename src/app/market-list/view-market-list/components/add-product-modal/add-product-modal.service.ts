@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Product } from "src/app/market-list/shared/models/product";
-import { MarketList } from "src/app/market-list/shared/models/market-list";
+import { Product } from "src/app/shared/models/product";
+import { MarketList } from "src/app/shared/models/market-list";
 
 @Injectable({
     providedIn: 'any'

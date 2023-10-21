@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Product } from "src/app/market-list/shared/models/product";
+import { Product } from "src/app/shared/models/product";
 import { AddProductModalService } from "./add-product-modal.service";
-import { MarketList } from "src/app/market-list/shared/models/market-list";
+import { MarketList } from "src/app/shared/models/market-list";
 import { AlertService } from "src/app/components/alert/alert.service";
 
 @Component({

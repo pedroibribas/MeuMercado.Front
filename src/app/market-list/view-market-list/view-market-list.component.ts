@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { MarketList } from '../shared/models/market-list';
-import { Product } from '../shared/models/product';
+import { MarketList } from '../../shared/models/market-list';
+import { Product } from '../../shared/models/product';
 import { MarketListStore } from '../shared/stores/market-list.store';
 
 @Component({
