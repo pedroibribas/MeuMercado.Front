@@ -1,0 +1,14 @@
+<button
+    type="button"
+    class="btn p-0 lh-1"
+    (click)="toggleProductPendency()"
+>
+    <fa-icon
+        *ngIf="isProductPending"
+        [icon]="faSquareCheck"
+    ></fa-icon>
+    <fa-icon
+        *ngIf="!isProductPending"
+        [icon]="faSquare"
+    ></fa-icon>
+</button>

@@ -11,7 +11,9 @@ export class MarketListStore {
 
   constructor(
     private localStorageService: LocalStorageService
-  ) { }
+  ) {
+    this.setInitialValue();
+  }
 
   private get subjectValue() { return this.subject.value };
 
@@ -19,7 +21,7 @@ export class MarketListStore {
     return this.subject.asObservable();
   }
 
-  private getLocalMarketList() {
+  private setInitialValue() {
     const marketList = this.localStorageService.getMarketList();
     if (marketList !== null)
       this.setValue(marketList);
@@ -27,6 +29,7 @@ export class MarketListStore {
 
   public setValue(v: MarketList) {
     this.subject.next(v);
+    this.localStorageService.saveMarketList(this.subjectValue);
   }
   
   /**

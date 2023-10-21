@@ -23,6 +23,10 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.marketListSubscription = this.updateViewData();
   }
+  
+  ngOnDestroy(): void {
+    this.marketListSubscription.unsubscribe();
+  }
 
   private updateViewData(): Subscription {
     return this.marketListStore
@@ -33,33 +37,13 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
       });
   }
 
-  public toggleProductSelectionById(id: string): void {
-    const index = this.getMarketListProductIndexById(id);
-    this.marketList.products[index].isSelected = !this.marketList.products[index].isSelected;
-    this.updateViewedProducts();
-    // this.storeMarketList();
-  }
-
-  public toggleProductPendingById(id: string): void {
-    const index = this.getMarketListProductIndexById(id);
-    this.marketList.products[index].isPending = !this.marketList.products[index].isPending;
-    this.updateViewedProducts();
-    // this.storeMarketList();
-  }
-
-  private getMarketListProductIndexById(id: string): number {
-    return this.marketList.products.findIndex((p) => p.id === id);
-  }
-
-  private updateViewedProducts(): void {
-    this.viewedProducts = this.marketList.products;
+  public toggleProductPropById(prop: 'isSelected' | 'isPending', id: string): void {
+    const productIndex = this.marketList.products.findIndex((p) => p.id === id);
+    this.marketList.products[productIndex][prop] = !this.marketList.products[productIndex][prop];    
+    this.marketListStore.setValue(this.marketList);
   }
 
   public hasProductsToShow(): boolean {
     return this.viewedProducts != null && this.viewedProducts.length > 0;
   }
-
-  ngOnDestroy(): void {
-    this.marketListSubscription.unsubscribe();
-  }  
 }

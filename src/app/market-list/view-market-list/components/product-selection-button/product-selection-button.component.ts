@@ -10,7 +10,6 @@ export class ProductSelectionButtonComponent {
   faSquareCheck = faSquareCheck;
   @Input({ required: true })
     isProductSelected = false;
-
   @Output()
     newIsProductSelectedEvent = new EventEmitter();
 

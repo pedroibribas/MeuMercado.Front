@@ -22,16 +22,16 @@
             <td>
                 <app-product-selection-button
                     [isProductSelected]="p.isSelected"
-                    (newIsProductSelectedEvent)="toggleProductSelectionById(p.id)"
+                    (newIsProductSelectedEvent)="toggleProductPropById('isSelected', p.id)"
                 ></app-product-selection-button>
             </td>
             <td class="text-wrap">{{ p.name }}</td>
             <td class="text-wrap">{{ p.brand }}</td>            
             <td>
-                <app-toggle-product-pendency-button
+                <app-product-pendency-button
                     [isProductPending]="p.isPending"
-                    (newIsProductPendingEvent)="toggleProductPendingById(p.id)"
-                ></app-toggle-product-pendency-button>
+                    (newIsProductPendingEvent)="toggleProductPropById('isPending', p.id)"
+                ></app-product-pendency-button>
             </td>
         </tr>
     </tbody>
