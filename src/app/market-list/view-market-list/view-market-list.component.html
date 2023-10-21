@@ -20,18 +20,18 @@
         >
             <th scope="row">{{ i+1 }}</th>
             <td>
-                <!-- <app-product-selection-button
+                <app-product-selection-button
                     [isProductSelected]="p.isSelected"
                     (newIsProductSelectedEvent)="toggleProductSelectionById(p.id)"
-                ></app-product-selection-button> -->
+                ></app-product-selection-button>
             </td>
             <td class="text-wrap">{{ p.name }}</td>
             <td class="text-wrap">{{ p.brand }}</td>            
             <td>
-                <!-- <app-toggle-product-pendency-button
+                <app-toggle-product-pendency-button
                     [isProductPending]="p.isPending"
                     (newIsProductPendingEvent)="toggleProductPendingById(p.id)"
-                ></app-toggle-product-pendency-button> -->
+                ></app-toggle-product-pendency-button>
             </td>
         </tr>
     </tbody>

@@ -23,7 +23,8 @@ export class ImportFileInputComponent {
     if (fileList) {
       this.readFileService.readAsTextAsync(fileList[0])
         .then(
-          (text) => typeof text !== 'undefined' && this.updateMarketListByCsvText(text)
+          (text) => typeof text !== 'undefined'
+            && this.updateMarketListByCsvText(text)
         );
     }
   }

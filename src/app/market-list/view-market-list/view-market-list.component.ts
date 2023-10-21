@@ -28,12 +28,7 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
     return this.marketListStore
       .load()
       .subscribe((marketList) => {
-        this.marketList = marketList;
-
-        console.log('observer_ViewMktListComponent');
-        console.log(marketList);
-        console.log(this.marketList);
-        
+        this.marketList = marketList;        
         this.viewedProducts = this.marketList.products ?? this.viewedProducts;
       });
   }

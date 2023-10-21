@@ -34,27 +34,33 @@ export function csvDefaultRow(object: { [index: string]: any }) {
 
 export function csvToObjectArray(fileContent: string): any[] {
   const result = [];
+  
   const rows = fileContent.split('\r\n');
+  rows.pop();
+
   let keys: string[] = [];
 
   for (let i = 0; i < rows.length; i++) {
-    const fields = rows[i].split(';');
-    const isHeadingRow = i === 0;
+    const cells: string[] = rows[i].split(';');
+    cells.pop();
+
+    const isHeadingRow: boolean = i === 0;
 
     if (isHeadingRow) {
-      keys = fields;
+      keys = cells;
     } else {
-      result.push(createObject(keys, fields));
-    }    
+      result.push(createObject(keys, cells));
+    }
   }
-
   return result;
 }
 
-function createObject(keys: string[], fields: any[]) {
+function createObject(keys: string[], cells: any[]): {} {
   let newObject: { [index: string]: any } = { };
 
-  for (let j = 0; j < fields.length; j++) {
-    newObject[keys[j]] = fields[j];
+  for (let j = 0; j < cells.length; j++) {
+    newObject[keys[j]] = cells[j];
   }
+
+  return newObject;
 }
