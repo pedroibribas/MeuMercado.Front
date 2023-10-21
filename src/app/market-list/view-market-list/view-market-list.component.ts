@@ -1,58 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MarketList } from '../shared/models/market-list';
 import { Product } from '../shared/models/product';
 import { MarketListStore } from '../shared/stores/market-list.store';
-import { ViewMarketListService } from './view-market-list.service';
 
 @Component({
   selector: 'app-view-market-list',
   templateUrl: './view-market-list.component.html',
-  providers: [ViewMarketListService]
 })
-export class ViewMarketListComponent implements OnInit {
+export class ViewMarketListComponent implements OnInit, OnDestroy {
+
+  public marketList = {} as MarketList;
+  public viewedProducts: Product[] = [];
+
   private marketListSubscription!: Subscription;
 
-  public marketList: MarketList = {
-    id: Math.random().toString(),
-    userId: Math.random().toString(),
-    createdAt: new Date().toDateString(),
-    products: []
-  };
-  public viewedProducts: Product[] = [];
-  public isAddProductModalOpen = false;
-
   constructor(
-    private marketListStore: MarketListStore,
-    private viewMarketListService: ViewMarketListService) {
-  }
+    private marketListStore: MarketListStore
+  ) { }
 
   ngOnInit(): void {
-    this.marketListSubscription = this.marketListStore
+    this.marketListSubscription = this.updateViewData();
+  }
+
+  private updateViewData(): Subscription {
+    return this.marketListStore
       .load()
       .subscribe((marketList) => {
+        console.log('observer_ViewMktListComponent');
         this.marketList = marketList;
         this.viewedProducts = this.marketList.products ?? this.viewedProducts;
       });
-  }
-
-  public setProductsViewed(nextViewedProducts: Product[]) {
-    this.viewedProducts = nextViewedProducts;
   }
 
   public toggleProductSelectionById(id: string): void {
     const index = this.getMarketListProductIndexById(id);
     this.marketList.products[index].isSelected = !this.marketList.products[index].isSelected;
     this.updateViewedProducts();
-    this.storeMarketList();
+    // this.storeMarketList();
   }
 
   public toggleProductPendingById(id: string): void {
     const index = this.getMarketListProductIndexById(id);
     this.marketList.products[index].isPending = !this.marketList.products[index].isPending;
     this.updateViewedProducts();
-    this.storeMarketList();
+    // this.storeMarketList();
   }
 
   private getMarketListProductIndexById(id: string): number {
@@ -67,16 +60,20 @@ export class ViewMarketListComponent implements OnInit {
     return this.viewedProducts != null && this.viewedProducts.length > 0;
   }
 
-  public storeMarketList() {
-    this.viewMarketListService.storeMarketList(this.marketList);
-  }
+  // public storeMarketList() {
+  //   this.viewMarketListService.storeMarketList(this.marketList);
+  // }
 
-  public removeStoredMarketList() {
-    this.viewMarketListService.removeStoredMarketList();
-    this.viewedProducts = [];
-  }
+  // public removeStoredMarketList() {
+  //   this.viewMarketListService.removeStoredMarketList();
+  //   this.viewedProducts = [];
+  // }
 
-  public toggleIsAddProductModal(state: boolean) {
-    this.isAddProductModalOpen = state;
-  }
+  // public toggleIsAddProductModal(state: boolean) {
+  //   this.isAddProductModalOpen = state;
+  // }
+
+  ngOnDestroy(): void {
+    this.marketListSubscription.unsubscribe();
+  }  
 }

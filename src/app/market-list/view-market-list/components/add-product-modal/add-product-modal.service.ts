@@ -1,5 +1,4 @@
 import { Injectable } from "@angular/core";
-import { ViewMarketListService } from "../../view-market-list.service";
 import { Product } from "src/app/market-list/shared/models/product";
 import { MarketList } from "src/app/market-list/shared/models/market-list";
 
@@ -9,8 +8,7 @@ import { MarketList } from "src/app/market-list/shared/models/market-list";
 export class AddProductModalService {
   private marketList = {} as MarketList;
 
-  constructor(
-    private viewMarketListService: ViewMarketListService) {
+  constructor() {
   }
 
   public from(marketList: MarketList): this {
@@ -36,7 +34,7 @@ export class AddProductModalService {
 
   public store(newProduct: Product): void {
       this.marketList.products.push(newProduct);
-      this.viewMarketListService.storeMarketList(this.marketList);
+      // this.viewMarketListService.storeMarketList(this.marketList);
   }
 
   private ensureMarketListProducts(): boolean {
