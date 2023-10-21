@@ -28,8 +28,12 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
     return this.marketListStore
       .load()
       .subscribe((marketList) => {
-        console.log('observer_ViewMktListComponent');
         this.marketList = marketList;
+
+        console.log('observer_ViewMktListComponent');
+        console.log(marketList);
+        console.log(this.marketList);
+        
         this.viewedProducts = this.marketList.products ?? this.viewedProducts;
       });
   }
@@ -59,19 +63,6 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   public hasProductsToShow(): boolean {
     return this.viewedProducts != null && this.viewedProducts.length > 0;
   }
-
-  // public storeMarketList() {
-  //   this.viewMarketListService.storeMarketList(this.marketList);
-  // }
-
-  // public removeStoredMarketList() {
-  //   this.viewMarketListService.removeStoredMarketList();
-  //   this.viewedProducts = [];
-  // }
-
-  // public toggleIsAddProductModal(state: boolean) {
-  //   this.isAddProductModalOpen = state;
-  // }
 
   ngOnDestroy(): void {
     this.marketListSubscription.unsubscribe();
