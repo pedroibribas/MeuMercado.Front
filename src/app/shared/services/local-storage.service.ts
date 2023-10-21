@@ -15,7 +15,7 @@ export class LocalStorageService {
     );
   }
 
-  public getMarketList(): MarketList {
+  public getMarketList(): MarketList | null {
     const marketList = localStorage.getItem(
       LocalStorageKey
     );

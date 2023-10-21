@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MarketList } from '../../shared/models/market-list';
-import { Product } from '../../shared/models/product';
+import { Subscription } from 'rxjs';
+
+import { MarketList } from '../shared/models/market-list';
+import { Product } from '../shared/models/product';
+import { MarketListStore } from '../shared/stores/market-list.store';
 import { ViewMarketListService } from './view-market-list.service';
 
 @Component({
@@ -9,6 +12,8 @@ import { ViewMarketListService } from './view-market-list.service';
   providers: [ViewMarketListService]
 })
 export class ViewMarketListComponent implements OnInit {
+  private marketListSubscription!: Subscription;
+
   public marketList: MarketList = {
     id: Math.random().toString(),
     userId: Math.random().toString(),
@@ -19,17 +24,17 @@ export class ViewMarketListComponent implements OnInit {
   public isAddProductModalOpen = false;
 
   constructor(
+    private marketListStore: MarketListStore,
     private viewMarketListService: ViewMarketListService) {
   }
 
   ngOnInit(): void {
-    this.updateView();
-  }
-
-  public setProductsByImportedData(importedData: string): void {
-    this.marketList.products = this.viewMarketListService.importProductsFromStringData(importedData);
-    this.setProductsViewed(this.marketList.products);
-    this.storeMarketList();
+    this.marketListSubscription = this.marketListStore
+      .load()
+      .subscribe((marketList) => {
+        this.marketList = marketList;
+        this.viewedProducts = this.marketList.products ?? this.viewedProducts;
+      });
   }
 
   public setProductsViewed(nextViewedProducts: Product[]) {
@@ -74,12 +79,4 @@ export class ViewMarketListComponent implements OnInit {
   public toggleIsAddProductModal(state: boolean) {
     this.isAddProductModalOpen = state;
   }
-
-  public updateView() {
-    const storedMarketList = this.viewMarketListService.getStoredMarketList();    
-    if (storedMarketList !== null) {
-      this.marketList = storedMarketList;
-      this.viewedProducts = this.marketList.products ?? this.viewedProducts;
-    }
-  }  
 }

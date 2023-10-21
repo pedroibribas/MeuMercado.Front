@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MarketListComponent } from './market-list.component';
-import { ViewMarketListComponent } from './components/view-market-list/view-market-list.component';
+import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
 
 const routes: Routes = [
     {
