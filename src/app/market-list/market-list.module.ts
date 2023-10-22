@@ -14,6 +14,9 @@ import { ExportFileButtonComponent } from './view-market-list/components/export-
 import { CommandComponent } from './view-market-list/components/command/command.component';
 import { ImportFileInputComponent } from './view-market-list/components/import-file-input/import-file-input.component';
 
+import { ViewedProductsStore } from './shared/stores/viewed-products.store';
+import { MarketListStore } from './shared/stores/market-list.store';
+
 
 
 @NgModule({
@@ -34,5 +37,9 @@ import { ImportFileInputComponent } from './view-market-list/components/import-f
     MarketListRoutingModule,
     FontAwesomeModule
   ],
+  providers: [
+    MarketListStore,
+    ViewedProductsStore
+  ]
 })
 export class MarketListModule { }
