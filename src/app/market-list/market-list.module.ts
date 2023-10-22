@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MarketListComponent } from './market-list.component';
 import { MarketListRoutingModule } from './market-list.routing.module';
 import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
-import { FilterButtonsComponent } from './view-market-list/components/filter-buttons/filter-buttons.component';
+import { FilterButtonComponent } from './view-market-list/components/filter-buttons/filter-button.component';
 import { ProductPendencyButtonComponent } from './view-market-list/components/product-pendency-button/product-pendency-button.component';
 import { ProductSelectionButtonComponent } from './view-market-list/components/product-selection-button/product-selection-button.component';
 import { AddProductModalComponent } from './view-market-list/components/add-product-modal/add-product-modal.component';
@@ -23,7 +23,7 @@ import { MarketListStore } from './shared/stores/market-list.store';
   declarations: [
     MarketListComponent,
     ViewMarketListComponent,
-    FilterButtonsComponent,
+    FilterButtonComponent,
     ProductSelectionButtonComponent,
     ProductPendencyButtonComponent,
     ImportFileInputComponent,

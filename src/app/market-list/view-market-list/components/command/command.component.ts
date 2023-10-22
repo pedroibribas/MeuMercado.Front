@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
-import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { faFileArrowDown, faFilter } from "@fortawesome/free-solid-svg-icons";
+import { EFilterType } from "src/app/market-list/shared/enums/filter-type.enum";
 
 @Component({
   selector: 'app-command',
@@ -7,6 +8,13 @@ import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
 })
 export class CommandComponent {
   public faFileArrowDown = faFileArrowDown;
+  public faFilter = faFilter;
+
+  public filterBtnSelected = EFilterType.selected;
+  public filterBtnPending = EFilterType.pending;
+  public filterBtnDefault = EFilterType.default;
+
+
   public isAddProductModalOpen = false;
 
   public toggleIsAddProductModal(state: boolean) {

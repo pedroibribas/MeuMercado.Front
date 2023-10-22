@@ -18,20 +18,36 @@
                 </li>
             </ul>
         </div>
+        <div class="btn-group dropup" role="group">
+            <button type="button" class="btn px-3" data-bs  -toggle="dropdown">
+                <fa-icon class="fs-1" [icon]="faFilter"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item">
+                        <app-filter-button [type]="filterBtnDefault"></app-filter-button>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <app-filter-button [type]="filterBtnSelected"></app-filter-button>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                        <app-filter-button [type]="filterBtnPending"></app-filter-button>
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </footer>
-
-<!-- <app-filter-buttons 
-    [allProducts]="marketList.products"
-    (newViewedProductsEvent)="setProductsViewed($event)"
-></app-filter-buttons> -->
 
 <!-- <app-add-product-modal
     [marketList]="marketList"
     [isModalOpen]="isAddProductModalOpen"
     (closeModalEvent)="toggleIsAddProductModal(false)"
 ></app-add-product-modal> -->
-
 <!-- <button
     type="button"
     class="btn btn-primary"
@@ -41,7 +57,6 @@
 <!-- <div>
     <button type="button" class="m-2" (click)="storeMarketList()"
     >Salvar lista</button>
-    
     <button type="button" class="m-2" (click)="removeStoredMarketList()"
     >Deletar todos os produtos</button>
 </div> -->
