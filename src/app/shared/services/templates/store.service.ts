@@ -9,19 +9,21 @@ export class StoreService<T> {
     this.subject = new BehaviorSubject<T>(this.initialState);
   }
 
-  private get subjectValue(): T {
+  protected get subjectValue(): T {
     return this.subject.value
   };
 
-  public getState() {
+  public load() {
     return this.subject.asObservable();
   }
 
-  public setState(s: T): void {
+  public setState(s: T): this {
     this.subject.next(s);
+    return this;
   }
 
-  public clearState() {
+  public clearState(): this {
     this.subject.next(this.initialState);
+    return this;
   }
 }
