@@ -7,7 +7,6 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">#</th>
             <th scope="col">Produto</th>
             <th scope="col">Marca</th>
             <th scope="col">#</th>
@@ -18,7 +17,6 @@
             *ngFor="let p of viewedProducts; index as i" 
             [class.text-decoration-line-through]="!p.isPending"
         >
-            <th scope="row">{{ i+1 }}</th>
             <td>
                 <app-product-selection-button
                     [isProductSelected]="p.isSelected"

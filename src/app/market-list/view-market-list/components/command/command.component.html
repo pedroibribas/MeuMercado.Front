@@ -1,4 +1,4 @@
-<footer class="footer mt-auto py-3 bg-body-tertiary">
+<footer class="fixed-bottom border-top border-2 footer mt-auto py-3 bg-body-tertiary">
     <div class="btn-toolbar" role="toolbar">
         <div class="btn-group dropup" role="group">
             <button type="button" class="btn px-3" data-bs-toggle="dropdown">
@@ -20,25 +20,22 @@
     </div>
 </footer>
 
-<!-- <button
-    type="button"
-></button>
-
-<button
-    type="button"
-></button> -->
-
 <!-- <app-filter-buttons 
     [allProducts]="marketList.products"
     (newViewedProductsEvent)="setProductsViewed($event)"
 ></app-filter-buttons> -->
+
+<!-- <app-add-product-modal
+    [marketList]="marketList"
+    [isModalOpen]="isAddProductModalOpen"
+    (closeModalEvent)="toggleIsAddProductModal(false)"
+></app-add-product-modal> -->
 
 <!-- <button
     type="button"
     class="btn btn-primary"
     (click)="toggleIsAddProductModal(true)"
 >Adicionar produto</button> -->
-
 
 <!-- <div>
     <button type="button" class="m-2" (click)="storeMarketList()"
@@ -47,9 +44,3 @@
     <button type="button" class="m-2" (click)="removeStoredMarketList()"
     >Deletar todos os produtos</button>
 </div> -->
-
-<!-- <app-add-product-modal
-    [marketList]="marketList"
-    [isModalOpen]="isAddProductModalOpen"
-    (closeModalEvent)="toggleIsAddProductModal(false)"
-></app-add-product-modal> -->
