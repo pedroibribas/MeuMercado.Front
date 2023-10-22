@@ -1,48 +1,38 @@
 export function csvTable(objectArray: {}[]) {
   let table = '';
 
+  table += objectToCsvHeadingRow(objectArray[0]);
+
   for (let i = 0; i < objectArray.length; i++) {
-    if (i === 0) {
-      table += csvFirstRow(objectArray[0]);
+    if (i === objectArray.length - 1) {
+      table += objectToCsvEndingRow(objectArray[i]);
     } else {
-      table += csvDefaultRow(objectArray[i]);
+      table += objectToCsvDefaultRow(objectArray[i]);
     }
   }
 
   return table;
 }
 
-export function csvFirstRow(object: { [index: string]: any }) {
-  let row = '';
-
-  for (let key in object) {
-    row += `${key};`;
-  }
-
-  return row += '\r\n';
+function objectToCsvHeadingRow(object: IObject): string {
+  return Object.keys(object).join(',') + '\r\n';
 }
 
-export function csvDefaultRow(object: { [index: string]: any }) {
-  let row = '';
+function objectToCsvDefaultRow(object: IObject): string {
+  return Object.keys(object).map((key) => [object[key]]).join(',') + '\r\n';
+}
 
-  for (let key in object) {
-    row += `${object[key]};`;
-  }
-
-  return row += '\r\n';
+function objectToCsvEndingRow(object: IObject): string {
+  return Object.keys(object).map((key) => [object[key]]).join(',');
 }
 
 export function csvToObjectArray(fileContent: string): any[] {
   const result = [];
-  
   const rows = fileContent.split('\r\n');
-  rows.pop();
-
   let keys: string[] = [];
 
   for (let i = 0; i < rows.length; i++) {
-    const cells: string[] = rows[i].split(';');
-    cells.pop();
+    const cells: string[] = rows[i].split(',');
 
     const isHeadingRow: boolean = i === 0;
 
@@ -63,4 +53,8 @@ function createObject(keys: string[], cells: any[]): {} {
   }
 
   return newObject;
+}
+
+interface IObject {
+  [index: string]: any;
 }
