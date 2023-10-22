@@ -31,11 +31,11 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
       this.viewedProductsStore.setState(localMarketList.products);
     }
 
-    this.marketListSubscription = this.marketListStore.load()
-      .subscribe((l) => this.marketList = l);
+    this.marketListSubscription = this.marketListStore.load().subscribe(
+        (l) => this.marketList = l);
 
-    this.viewedProductsSubscription = this.viewedProductsStore.load()
-      .subscribe((p) => this.viewedProducts = p);
+    this.viewedProductsSubscription = this.viewedProductsStore.load().subscribe(
+      (p) => this.viewedProducts = p);
   }
 
   ngOnDestroy(): void {
