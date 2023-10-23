@@ -4,11 +4,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
+import { AlertModule } from './components/alert/alert.module';
+import { ModalModule } from './components/modal/modal.module';
+
 import { ReadFileService } from './shared/services/read-file.service';
 import { FileInputService } from './shared/services/file-input.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
-import { AlertModule } from './components/alert/alert.module';
 import { ExportFileService } from './shared/services/export-file.service';
+
 
 @NgModule({
   declarations: [
@@ -18,7 +22,8 @@ import { ExportFileService } from './shared/services/export-file.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    AlertModule
+    AlertModule,
+    ModalModule
   ],
   providers: [
     FileInputService,

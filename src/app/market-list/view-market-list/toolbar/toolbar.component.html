@@ -42,21 +42,26 @@
                 </li>
             </ul>
         </div>
+        <div class="btn-group dropup" role="group">
+            <button type="button" class="btn px-3" data-bs-toggle="dropdown">
+                <fa-icon class="fs-1" [icon]="faGear"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <div class="dropdown-item">
+                        <app-open-modal-button [type]="addProductModalBtn"></app-open-modal-button>
+                    </div>
+                </li>
+                <li>
+                    <div class="dropdown-item">
+                    <!-- <div>
+                        <button type="button" class="m-2" (click)="removeStoredMarketList()"
+                        >Limpar lista</button>
+                    </div> -->
+                    </div>
+                </li>
+            </ul>
+        </div>
     </div>
 </footer>
 
-<!-- <app-add-product-modal
-    [marketList]="marketList"
-    [isModalOpen]="isAddProductModalOpen"
-    (closeModalEvent)="toggleIsAddProductModal(false)"
-></app-add-product-modal> -->
-<!-- <button
-    type="button"
-    class="btn btn-primary"
-    (click)="toggleIsAddProductModal(true)"
->Adicionar produto</button> -->
-
-<!-- <div>
-    <button type="button" class="m-2" (click)="removeStoredMarketList()"
-    >Limpar lista</button>
-</div> -->

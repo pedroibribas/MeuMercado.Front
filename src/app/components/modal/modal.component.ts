@@ -3,6 +3,7 @@ import { Modal } from "./modal.model";
 import { ModalService } from "./modal.service";
 import { ModalDirective } from "./modal.directive";
 import { Subscription } from "rxjs";
+import { isObjectEmpty } from "src/app/shared/utils/object.utils";
 
 @Component({
   selector: 'app-modal',
@@ -11,6 +12,7 @@ import { Subscription } from "rxjs";
 export class ModalComponent implements OnInit, OnDestroy {
 
   protected modal!: Modal;
+  protected hasModalBody: boolean = false;
   private modalServiceSubscription!: Subscription;
 
   @ViewChild(ModalDirective, { static: true })
@@ -32,14 +34,19 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalServiceSubscription = this.modalService
       .load()
       .subscribe((m) => {
-        this.modal = m;
 
-        const viewContainerRef = this.modalHost.viewContainerRef;
-        viewContainerRef.clear();    
-        if (typeof m.component !== 'undefined') {
-          viewContainerRef.createComponent<ModalComponent>(m.component);
-        }
-      });    
+      if (isObjectEmpty(m))
+        return;
+        
+      this.modal = m;
+      this.hasModalBody = true;
+      const viewContainerRef = this.modalHost.viewContainerRef;
+      viewContainerRef.clear();    
+      if (typeof m.component !== 'undefined') {
+        viewContainerRef.createComponent<ModalComponent>(m.component);
+      }
+      });
+
   }
 
   protected removeModal() {

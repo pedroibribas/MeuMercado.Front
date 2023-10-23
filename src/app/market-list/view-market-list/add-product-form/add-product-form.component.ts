@@ -1,27 +1,19 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { Component, OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { v4 as uuidv4 } from 'uuid';
-
 import { Product } from "src/app/shared/models/product";
 import { AlertService } from "src/app/components/alert/alert.service";
-
-import { MarketListStore } from "../../shared/stores/market-list.store";
+import { MarketListStore } from "src/app/market-list/shared/stores/market-list.store";
 
 @Component({
-  selector: 'app-add-product-modal',
-  templateUrl: './add-product-modal.component.html'
+  selector: 'app-add-product-form',
+  templateUrl: './add-product-form.component.html'
 })
-export class AddProductModalComponent implements OnInit {
+export class AddProductFormComponent implements OnInit {
   public newProductForm: FormGroup = this.buildForm();
   private products: Product[] = [];
   public productTypeOptions: string[] = [];
   public errors: string[] = [];
-
-  @Input({ required: true })
-    public isModalOpen = false;
-
-  @Output()
-    public closeModalEvent = new EventEmitter();
     
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +21,7 @@ export class AddProductModalComponent implements OnInit {
     private alertService: AlertService
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {      
     this.setProducts();
     this.setTypesOptions();
   }
@@ -82,9 +74,5 @@ export class AddProductModalComponent implements OnInit {
       
     this.alertService.success(`${newProduct.name} adicionado.`);
     this.newProductForm.reset();
-  }
-
-  public closeModal() {
-    this.closeModalEvent.emit();
   }
 }
