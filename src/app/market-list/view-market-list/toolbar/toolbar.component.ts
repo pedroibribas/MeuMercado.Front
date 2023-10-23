@@ -3,10 +3,10 @@ import { faFileArrowDown, faFilter } from "@fortawesome/free-solid-svg-icons";
 import { EFilterType } from "src/app/market-list/shared/enums/filter-type.enum";
 
 @Component({
-  selector: 'app-command',
-  templateUrl: './command.component.html'
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html'
 })
-export class CommandComponent {
+export class ToolbarComponent {
   public faFileArrowDown = faFileArrowDown;
   public faFilter = faFilter;
 
