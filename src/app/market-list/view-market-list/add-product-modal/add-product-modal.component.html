@@ -38,7 +38,7 @@
                         <label for="types" class="form-label">Histórico de tipos</label>
                         <select class="form-control" name="types" id="types" (change)="updateTypeFieldBySelectedOption($event)">
                             <option
-                                *ngFor="let t of typesOptions"
+                                *ngFor="let t of productTypeOptions"
                                 [value]="t"
                             >{{ t }}</option>
                         </select>

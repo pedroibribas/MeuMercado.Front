@@ -18,9 +18,10 @@ export class MarketListStore extends StoreService<MarketList> {
    * @param key Chave para ser atualizada.
    * @param value Valor atualizado.
    */
-  public setField(key: keyof MarketList, value: any) {
+  public setField(key: keyof MarketList, value: any): this {
     this.subjectValue[key] = value;
     this.setState(this.subjectValue);
+    return this;
   }
 
   public updateLocalStorage(): void {
