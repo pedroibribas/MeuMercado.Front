@@ -4,6 +4,7 @@ import { ModalService } from "./modal.service";
 import { ModalDirective } from "./modal.directive";
 import { Subscription } from "rxjs";
 import { isObjectEmpty } from "src/app/shared/utils/object.utils";
+import { isUndefined } from "src/app/shared/utils/check-undefined.utils";
 
 @Component({
   selector: 'app-modal',
@@ -15,8 +16,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   protected hasModalBody: boolean = false;
   private modalServiceSubscription!: Subscription;
 
-  @ViewChild(ModalDirective, { static: true })
-    modalHost!: ModalDirective;
+  @ViewChild(ModalDirective, { static: true }) modalHost!: ModalDirective;
 
   constructor(
     private modalService: ModalService
@@ -30,26 +30,36 @@ export class ModalComponent implements OnInit, OnDestroy {
     this.modalServiceSubscription.unsubscribe();
   }
 
-  private loadComponent() {
+  public loadComponent() {
     this.modalServiceSubscription = this.modalService
       .load()
       .subscribe((m) => {
+        console.log('loading modal');
 
-      if (isObjectEmpty(m))
-        return;
+        this.modal = m;
+
+        if (isObjectEmpty(m)) {
+          this.hasModalBody = false;
+          return;
+        }
+        this.hasModalBody = true;
         
-      this.modal = m;
-      this.hasModalBody = true;
-      const viewContainerRef = this.modalHost.viewContainerRef;
-      viewContainerRef.clear();    
-      if (typeof m.component !== 'undefined') {
-        viewContainerRef.createComponent<ModalComponent>(m.component);
-      }
+        console.log(this.modalHost)
+        console.log(m.component)
+
+        if (!isUndefined(this.modalHost) && isUndefined(m.component)) {
+          const viewContainerRef = this.modalHost.viewContainerRef;
+          viewContainerRef.clear();
+          viewContainerRef.createComponent<ModalComponent>(m.component!);
+        }
       });
 
+      console.log(this.modalHost)
+
+      
   }
 
   protected removeModal() {
-    this.modal = {} as Modal;
+    this.modalService.clearState();
   }
 }

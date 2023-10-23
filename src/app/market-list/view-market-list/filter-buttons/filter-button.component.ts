@@ -28,7 +28,7 @@ export class FilterButtonComponent implements OnInit {
   protected filter() {
     this.marketListStore
       .load()
-      .subscribe((l) => this.allProducts = l.products)
+      .subscribe((l) => this.allProducts = l.products ?? this.allProducts)
       .unsubscribe();
 
     this.componentFactory[this.type].setViewedProducts();
@@ -39,15 +39,19 @@ export class FilterButtonComponent implements OnInit {
   }
 
   private viewSelectedProducts(): void {
-    this.viewedProductsStore.setState(
-      this.allProducts.filter((p) => p.isSelected)
-    );
+    if (this.allProducts.length !== 0) {
+      this.viewedProductsStore.setState(
+        this.allProducts.filter((p) => p.isSelected)
+      );
+    }
   }
 
   private viewPendingProducts(): void {
-    this.viewedProductsStore.setState(
-      this.allProducts.filter((p) => p.isSelected && !p.isPending)
-    );
+    if (this.allProducts.length !== 0) {
+      this.viewedProductsStore.setState(
+        this.allProducts.filter((p) => p.isSelected && !p.isPending)
+      );
+    }
   }
 
   private componentFactory: IFilterButtonFactory = {

@@ -24,23 +24,26 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    const localMarketList = this.localStorageService.getMarketList();
-
-    if (localMarketList !== null) {
-      this.marketListStore.setState(localMarketList);
-      this.viewedProductsStore.setState(localMarketList.products);
-    }
-
     this.marketListSubscription = this.marketListStore.load().subscribe(
         (l) => this.marketList = l);
 
     this.viewedProductsSubscription = this.viewedProductsStore.load().subscribe(
       (p) => this.viewedProducts = p);
+
+    this.getLocalStorageData();
   }
 
   ngOnDestroy(): void {
     this.marketListSubscription.unsubscribe();
     this.viewedProductsSubscription.unsubscribe();
+  }
+
+  private getLocalStorageData() {
+    const localMarketList = this.localStorageService.getMarketList();
+    if (localMarketList !== null) {
+      this.marketListStore.setState(localMarketList);
+      this.viewedProductsStore.setState(localMarketList.products);
+    }
   }
 
   public toggleProductPropById(prop: 'isSelected' | 'isPending', id: string): void {

@@ -30,9 +30,9 @@ export class OpenModalButtonComponent implements OnInit {
   }
 
   protected openModal() {
-    this.modalService.newModal(
-      this.modalTitle,
-      this.modalBody
-    );
+    this.modalService.setState({
+      title: this.modalTitle,
+      component: this.modalBody
+    });
   }
 }

@@ -8,6 +8,6 @@ import { StoreService } from "src/app/shared/services/templates/store.service";
 })
 export class ViewedProductsStore extends StoreService<Product[]> {
   constructor() {
-    super({} as Product[]);
+    super([] as Product[]);
   }
 }

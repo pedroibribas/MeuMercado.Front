@@ -1,21 +1,13 @@
-import { Injectable, Type } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { Injectable } from "@angular/core";
 import { Modal } from "./modal.model";
+import { StoreService } from "src/app/shared/services/templates/store.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModalService {
-  private subject = new BehaviorSubject<Modal>({} as Modal);
-
-  public load(): Observable<Modal> {
-    return this.subject.asObservable();
-  }
+export class ModalService extends StoreService<Modal> {
   
-  public newModal(title: string, component: Type<any>) {
-    this.subject.next(new Modal({
-        title,
-        component
-      }));
+  constructor() {
+    super({} as Modal);
   }
 }
