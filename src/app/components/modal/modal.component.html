@@ -1,19 +1,22 @@
 <div
-    *ngIf="hasModalBody"
-    class="modal bg-black bg-opacity-10 z-3 fade show d-block show d-block"
+    [class]="modalClassesStr"
     tabindex="-1"
 >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5">{{ modal.title }}</h1>
+                <h1 class="modal-title fs-5">
+                    {{ modal.title }}
+                </h1>
                 <button
                     type="button"
                     class="btn-close"
                     (click)="removeModal()"
                 ></button>
             </div>
+
             <ng-template modalHost></ng-template>
+
         </div>
     </div>
 </div>

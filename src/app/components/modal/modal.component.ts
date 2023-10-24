@@ -5,6 +5,8 @@ import { ModalDirective } from "./modal.directive";
 import { Subscription } from "rxjs";
 import { isObjectEmpty } from "src/app/shared/utils/object.utils";
 import { isUndefined } from "src/app/shared/utils/check-undefined.utils";
+import { createHostView } from "src/app/shared/utils/create-host-view.utils";
+
 
 @Component({
   selector: 'app-modal',
@@ -13,8 +15,8 @@ import { isUndefined } from "src/app/shared/utils/check-undefined.utils";
 export class ModalComponent implements OnInit, OnDestroy {
 
   protected modal!: Modal;
-  protected hasModalBody: boolean = false;
   private modalServiceSubscription!: Subscription;
+  protected modalClassesStr: string = 'modal bg-black bg-opacity-10 z-3 fade';
 
   @ViewChild(ModalDirective, { static: true }) modalHost!: ModalDirective;
 
@@ -23,43 +25,39 @@ export class ModalComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.loadComponent();
+    this.modalServiceSubscription = this.modalService
+      .load()
+      .subscribe((m) => {
+        this.setModal(m);
+        this.loadDynamicTemplate();
+        this.toggleModalByCss();
+      });
   }
 
   ngOnDestroy(): void {
     this.modalServiceSubscription.unsubscribe();
   }
 
-  public loadComponent() {
-    this.modalServiceSubscription = this.modalService
-      .load()
-      .subscribe((m) => {
-        console.log('loading modal');
-
-        this.modal = m;
-
-        if (isObjectEmpty(m)) {
-          this.hasModalBody = false;
-          return;
-        }
-        this.hasModalBody = true;
-        
-        console.log(this.modalHost)
-        console.log(m.component)
-
-        if (!isUndefined(this.modalHost) && isUndefined(m.component)) {
-          const viewContainerRef = this.modalHost.viewContainerRef;
-          viewContainerRef.clear();
-          viewContainerRef.createComponent<ModalComponent>(m.component!);
-        }
-      });
-
-      console.log(this.modalHost)
-
-      
-  }
-
   protected removeModal() {
     this.modalService.clearState();
+  }
+
+  private setModal(v: Modal) {
+    this.modal = v;
+  }
+
+  private toggleModalByCss(): string {
+    return isObjectEmpty(this.modal)
+      ? this.modalClassesStr = 'modal bg-black bg-opacity-10 z-3 fade'
+      : this.modalClassesStr += ' d-block show';
+  }
+
+  private loadDynamicTemplate() {
+    try {
+      if (!isUndefined(this.modal.component))
+        createHostView<ModalComponent>(this.modalHost, this.modal.component!);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }

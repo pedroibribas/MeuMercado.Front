@@ -2,7 +2,8 @@ import { AddProductFormComponent } from "../../view-market-list/add-product-form
 import { EModalType } from "../enums/modal-type.enum";
 import { IOpenModalButtonFactory } from "../interfaces/open-modal-button-factory.interface";
 
-export const openModalButtonComponent: IOpenModalButtonFactory = {
+
+export const openModalButtonFactory: IOpenModalButtonFactory = {
 
     [EModalType.addProductForm]: {
         btnName: '+Produto',
