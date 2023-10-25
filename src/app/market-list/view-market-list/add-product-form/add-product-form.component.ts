@@ -1,19 +1,25 @@
-import { Component, OnInit} from "@angular/core";
+import { Component, OnDestroy, OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
 import { v4 as uuidv4 } from 'uuid';
+
+import { getArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
 import { Product } from "src/app/shared/models/product";
 import { AlertService } from "src/app/components/alert/alert.service";
 import { MarketListStore } from "src/app/market-list/shared/stores/market-list.store";
+
+
 
 @Component({
   selector: 'app-add-product-form',
   templateUrl: './add-product-form.component.html'
 })
-export class AddProductFormComponent implements OnInit {
-  public newProductForm: FormGroup = this.buildForm();
-  private products: Product[] = [];
-  public productTypeOptions: string[] = [];
-  public errors: string[] = [];
+export class AddProductFormComponent implements OnInit, OnDestroy {
+
+  protected form: FormGroup = this.buildForm();
+  protected productTypesOptions: string[] = [];
+  private productsDto: Product[] = [];
+  private marketListStoreSubscription!: Subscription;
     
   constructor(
     private formBuilder: FormBuilder,
@@ -21,9 +27,16 @@ export class AddProductFormComponent implements OnInit {
     private alertService: AlertService
   ) { }
 
-  ngOnInit(): void {      
-    this.setProducts();
-    this.setTypesOptions();
+  ngOnInit(): void {
+    this.marketListStoreSubscription = this.marketListStore.load()
+      .subscribe((l) => {
+        this.productsDto = l.products ?? [];
+        this.productTypesOptions = getArrayOfObjectArrayByKey(this.productsDto, 'type');
+      });
+  }
+  
+  ngOnDestroy(): void {
+    this.marketListStoreSubscription.unsubscribe();
   }
 
   private buildForm(): FormGroup {
@@ -34,45 +47,32 @@ export class AddProductFormComponent implements OnInit {
     });
   }
 
-  get name() { return this.newProductForm.get('name'); }
-  get brand() { return this.newProductForm.get('brand'); }
-  get type() { return this.newProductForm.get('type'); }
+  get name() { return this.form.get('name'); }
+  get brand() { return this.form.get('brand'); }
+  get type() { return this.form.get('type'); }
 
-  private setProducts(): void {
-    this.marketListStore
-      .load()
-      .subscribe((l) => this.products = l.products)
-      .unsubscribe();
-  }
 
-  private setTypesOptions() {
-    this.products.forEach((p) => {
-      if (!this.productTypeOptions.includes(p.type))
-        this.productTypeOptions.push(p.type);
-    });
-  }
-
-  public updateTypeFieldBySelectedOption(event: Event): void {
+  public updateTypeFieldBySelectedProductType(event: Event): void {
     const selectElement = event.currentTarget as HTMLSelectElement;
     this.type?.setValue(selectElement.value);
   }
 
-  public addNewProduct(): void {
-    if (this.newProductForm.invalid) {
-      this.errors.push('Erro ao adicionar novo produto na lista.');
+  public submit(): void {
+    if (this.form.invalid) {
+      return;
     }
 
-    const newProduct = this.newProductForm.getRawValue() as Product;
+    const newProduct = this.form.getRawValue() as Product;
     newProduct.id = uuidv4();
     newProduct.isSelected = true;
     newProduct.isPending = true;
-    this.products.push(newProduct);
+    this.productsDto.push(newProduct);
 
     this.marketListStore
-      .setField('products', this.products)
+      .setField('products', this.productsDto)
       .updateLocalStorage();
       
     this.alertService.success(`${newProduct.name} adicionado.`);
-    this.newProductForm.reset();
+    this.form.reset();
   }
 }
