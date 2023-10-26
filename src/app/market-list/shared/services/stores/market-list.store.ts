@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 import { BaseStoreService } from "src/app/shared/services/base/base-store.service";
 import { MarketList } from "src/app/shared/models/market-list.model";
-import { MarketListDto } from "src/app/shared/models/market-list-dto";
+import { MarketListDto } from "src/app/shared/models/market-list-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ export class MarketListStore extends BaseStoreService<MarketList> {
     private localStorageService: LocalStorageService
   ) {
     const initialMarketList = new MarketList(
-      new MarketListDto({ products: [] }));
+      new MarketListDto(new MarketListDto()));
 
     super(initialMarketList);
   }

@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { MarketList } from '../../shared/models/market-list';
 import { MarketListStore } from '../shared/services/stores/market-list.store';
 import { ViewedProductsStore } from '../shared/services/stores/viewed-products.store';
 import { InitModuleDataService } from '../shared/services/init-module-data.service';
 import { Product } from 'src/app/shared/models/product.model';
+import { MarketList } from 'src/app/shared/models/market-list.model';
+
 
 @Component({
   selector: 'app-view-market-list',

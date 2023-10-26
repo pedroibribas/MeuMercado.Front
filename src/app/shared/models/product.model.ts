@@ -1,4 +1,5 @@
-import { v4 as uuidv4 } from 'uuid';
+import { newUUID } from '../utils/uuid.utils';
+import { ProductDto } from './product-dto.model';
 
 
 export class Product {
@@ -10,13 +11,13 @@ export class Product {
   public isSelected: boolean;
   public isPending: boolean;
 
-  constructor(data: { name: string, brand: string, amount: string, type: string }) {
-    this.id = uuidv4();
+  constructor(data: ProductDto) {
+    this.id = newUUID();
     this.isSelected = true;
     this.isPending = true;
-    this.name = data.name;
-    this.brand = data.brand;
-    this.amount = data.amount;
-    this.type = data.type;
+    this.name = data.name ?? '';
+    this.brand = data.brand ?? '';
+    this.amount = data.amount ?? '';
+    this.type = data.type ?? '';
   }
 }

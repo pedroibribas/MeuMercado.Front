@@ -3,9 +3,9 @@ import { ReadFileService } from "src/app/shared/services/read-file.service";
 import { FileInputService } from "src/app/shared/services/file-input.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
 import { csvToObjectArray } from "src/app/shared/utils/format-csv.utils";
-import { MarketList } from "src/app/shared/models/market-list";
 import { ViewedProductsStore } from "src/app/market-list/shared/services/stores/viewed-products.store";
 import { Product } from "src/app/shared/models/product.model";
+import { MarketList } from "src/app/shared/models/market-list.model";
 
 @Component({
   selector: 'app-import-file-input',

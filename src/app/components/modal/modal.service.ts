@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { Modal } from "./modal.model";
-import { StoreService } from "src/app/shared/services/base/store.service";
+import { BaseStoreService } from "src/app/shared/services/base/base-store.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModalService extends StoreService<Modal> {
+export class ModalService extends BaseStoreService<Modal> {
   
   constructor() {
     super({} as Modal);

@@ -1,5 +1,5 @@
 import { newUUID } from "../utils/uuid.utils";
-import { MarketListDto } from "./market-list-dto";
+import { MarketListDto } from "./market-list-dto.model";
 import { Product } from "./product.model";
 
 
@@ -13,6 +13,6 @@ export class MarketList {
         this.id = newUUID();
         this.userId = newUUID();
         this.createdAt = new Date().toString();
-        this.products = dto.products;
+        this.products = dto.products ?? [];
     }
 }

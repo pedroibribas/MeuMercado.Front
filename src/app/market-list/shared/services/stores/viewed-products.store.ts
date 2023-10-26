@@ -1,13 +1,15 @@
 import { Injectable } from "@angular/core";
+
+import { BaseStoreService } from "src/app/shared/services/base/base-store.service";
 import { Product } from "src/app/shared/models/product.model";
 
-import { StoreService } from "src/app/shared/services/base/store.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ViewedProductsStore extends StoreService<Product[]> {
+export class ViewedProductsStore extends BaseStoreService<Product[]> {
+  
   constructor() {
-    super([] as Product[]);
+    super([]);
   }
 }
