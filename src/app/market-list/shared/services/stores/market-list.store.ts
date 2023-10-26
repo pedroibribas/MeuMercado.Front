@@ -1,18 +1,23 @@
 import { Injectable } from "@angular/core";
-import { MarketList } from "../../../../shared/models/market-list";
-import { StoreService } from "src/app/shared/services/templates/store.service";
 import { LocalStorageService } from "src/app/shared/services/local-storage.service";
+import { BaseStoreService } from "src/app/shared/services/base/base-store.service";
+import { MarketList } from "src/app/shared/models/market-list.model";
+import { MarketListDto } from "src/app/shared/models/market-list-dto";
 
 @Injectable({
   providedIn: 'root'
 })
-export class MarketListStore extends StoreService<MarketList> {
+export class MarketListStore extends BaseStoreService<MarketList> {
+
   constructor(
     private localStorageService: LocalStorageService
   ) {
-    super({} as MarketList);
+    const initialMarketList = new MarketList(
+      new MarketListDto({ products: [] }));
+
+    super(initialMarketList);
   }
-  
+
   /**
    * @description Atualiza o valor de um campo específico do valor global de MarketList.
    * @param key Chave para ser atualizada.

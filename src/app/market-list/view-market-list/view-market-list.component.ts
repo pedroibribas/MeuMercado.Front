@@ -24,6 +24,7 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+debugger
     this.initModuleDataService.load();
 
     this.marketListSubscription = this.marketListStore.load()
@@ -36,6 +37,7 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   }
   
   ngOnDestroy(): void {
+    console.log('destroyed')
     this.marketListSubscription.unsubscribe();
     this.viewedProductsSubscription.unsubscribe();
   }  

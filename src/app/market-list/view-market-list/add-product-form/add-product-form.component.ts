@@ -30,6 +30,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.marketListStoreSubscription = this.marketListStore.load()
       .subscribe((l) => {
+debugger
         this.productsDto = l.products ?? [];
         this.productTypesOptions = getArrayOfObjectArrayByKey(this.productsDto, 'type');
       });
@@ -63,11 +64,10 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
 
     const newProduct: Product = this.getNewProduct(
       this.form.getRawValue() as Product);
-
+debugger
     this.productsDto.push(newProduct);
 
     this.setMarketListStore();
-    this.setViewedProductsStore();
       
     this.alertService.success(
       `${newProduct} adicionado.`);
