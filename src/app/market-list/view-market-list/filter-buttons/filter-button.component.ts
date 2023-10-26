@@ -2,9 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ViewedProductsStore } from 'src/app/market-list/shared/services/stores/viewed-products.store';
 import { MarketListStore } from 'src/app/market-list/shared/services/stores/market-list.store';
 
-import { Product } from '../../../shared/models/product.interface';
 import { IFilterButtonFactory } from '../../shared/interfaces/filter-button-factory.interface';
 import { EFilterType } from '../../shared/enums/filter-type.enum';
+import { Product } from 'src/app/shared/models/product.model';
 
 @Component({
   selector: 'app-filter-button',

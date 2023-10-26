@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
 import { AlertService } from "src/app/components/alert/alert.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
 import { ViewedProductsStore } from "src/app/market-list/shared/services/stores/viewed-products.store";
-import { Product } from "src/app/shared/models/product.interface";
+import { Product } from "src/app/shared/models/product.model";
 import { ExportFileService } from "src/app/shared/services/export-file.service";
 
 @Component({

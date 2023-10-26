@@ -1,4 +1,5 @@
-import { Product } from "./product.interface";
+import { Product } from "./product.model";
+
 
 export interface MarketList {
     id: string;

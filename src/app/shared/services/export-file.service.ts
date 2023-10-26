@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Product } from "src/app/shared/models/product.interface";
 import { csvTable } from "../utils/format-csv.utils";
+import { Product } from "../models/product.model";
 
 @Injectable({
   providedIn: 'root'
