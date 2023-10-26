@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit} from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
-import { v4 as uuidv4 } from 'uuid';
 
 import { getArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
-import { Product } from "src/app/shared/models/product";
 import { AlertService } from "src/app/components/alert/alert.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
-
+import { ViewedProductsStore } from "../../shared/services/stores/viewed-products.store";
+import { Product } from "src/app/shared/models/product.model";
 
 
 @Component({
@@ -24,6 +23,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private marketListStore: MarketListStore,
+    private viewedProductsStore: ViewedProductsStore,
     private alertService: AlertService
   ) { }
 
@@ -58,21 +58,47 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   }
 
   public submit(): void {
-    if (this.form.invalid) {
+    if (this.setInvalidation())
       return;
-    }
 
-    const newProduct = this.form.getRawValue() as Product;
-    newProduct.id = uuidv4();
-    newProduct.isSelected = true;
-    newProduct.isPending = true;
+    const newProduct: Product = this.getNewProduct(
+      this.form.getRawValue() as Product);
+
     this.productsDto.push(newProduct);
 
+    this.setMarketListStore();
+    this.setViewedProductsStore();
+      
+    this.alertService.success(
+      `${newProduct} adicionado.`);
+
+    this.form.reset();
+  }
+
+  private setInvalidation(): boolean {
+    if (this.form.invalid) {
+      return true;
+    }
+    return false;
+  }
+
+  private getNewProduct(formData: Product): Product {
+    return new Product({
+      name: formData.name,
+      brand: formData.brand,
+      type: formData.type,
+      amount: ""
+    });
+  }
+
+  private setMarketListStore(): void {
     this.marketListStore
       .setField('products', this.productsDto)
       .updateLocalStorage();
-      
-    this.alertService.success(`${newProduct.name} adicionado.`);
-    this.form.reset();
+  }
+  
+  private setViewedProductsStore(): void {
+    this.viewedProductsStore
+      .setState(this.productsDto);
   }
 }

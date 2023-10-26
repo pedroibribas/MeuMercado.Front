@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Product } from "src/app/shared/models/product";
+import { Product } from "src/app/shared/models/product.interface";
 import { csvTable } from "../utils/format-csv.utils";
 
 @Injectable({

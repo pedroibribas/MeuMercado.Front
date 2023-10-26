@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MarketList } from '../../shared/models/market-list';
-import { Product } from '../../shared/models/product';
+import { Product } from '../../shared/models/product.interface';
 import { MarketListStore } from '../shared/services/stores/market-list.store';
 import { ViewedProductsStore } from '../shared/services/stores/viewed-products.store';
 import { InitModuleDataService } from '../shared/services/init-module-data.service';
