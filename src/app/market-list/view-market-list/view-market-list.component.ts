@@ -1,19 +1,25 @@
+/**
+ * TODO
+ * REMOVER ON DESTROY
+ * UNSUBS NA NAVEGAÇÃO
+ */
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { MarketList } from '../../shared/models/market-list';
 import { Product } from '../../shared/models/product';
-import { MarketListStore } from '../shared/stores/market-list.store';
-import { ViewedProductsStore } from '../shared/stores/viewed-products.store';
+import { MarketListStore } from '../shared/services/stores/market-list.store';
+import { ViewedProductsStore } from '../shared/services/stores/viewed-products.store';
 import { LocalStorageService } from 'src/app/shared/services/local-storage.service';
 
 @Component({
   selector: 'app-view-market-list',
   templateUrl: './view-market-list.component.html',
 })
-export class ViewMarketListComponent implements OnInit, OnDestroy {
-  public marketList = {} as MarketList;
-  public viewedProducts: Product[] = [];
+export class ViewMarketListComponent implements OnInit {
+  protected marketList = {} as MarketList;
+  protected viewedProducts: Product[] = [];
   private marketListSubscription!: Subscription;
   private viewedProductsSubscription!: Subscription;
 
@@ -24,27 +30,26 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.marketListSubscription = this.marketListStore.load().subscribe(
-        (l) => this.marketList = l);
-
-    this.viewedProductsSubscription = this.viewedProductsStore.load().subscribe(
-      (p) => this.viewedProducts = p);
-
-    this.getLocalStorageData();
-  }
-
-  ngOnDestroy(): void {
-    this.marketListSubscription.unsubscribe();
-    this.viewedProductsSubscription.unsubscribe();
-  }
-
-  private getLocalStorageData() {
     const localMarketList = this.localStorageService.getMarketList();
+
     if (localMarketList !== null) {
       this.marketListStore.setState(localMarketList);
       this.viewedProductsStore.setState(localMarketList.products);
     }
+
+    this.marketListSubscription = this.marketListStore.load()
+      .subscribe((l) => 
+        this.marketList = l);
+
+    this.viewedProductsSubscription = this.viewedProductsStore.load()
+      .subscribe((p) =>
+        this.viewedProducts = p);
   }
+
+  // ngOnDestroy(): void {
+  //   this.marketListSubscription.unsubscribe();
+  //   this.viewedProductsSubscription.unsubscribe();
+  // }
 
   public toggleProductPropById(prop: 'isSelected' | 'isPending', id: string): void {
     const productIndex = this.marketList.products.findIndex((p) => p.id === id);

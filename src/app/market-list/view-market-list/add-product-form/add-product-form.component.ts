@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { getArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
 import { Product } from "src/app/shared/models/product";
 import { AlertService } from "src/app/components/alert/alert.service";
-import { MarketListStore } from "src/app/market-list/shared/stores/market-list.store";
+import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
 
 
 

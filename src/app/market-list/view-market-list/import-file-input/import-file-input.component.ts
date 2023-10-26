@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { ReadFileService } from "src/app/shared/services/read-file.service";
 import { FileInputService } from "src/app/shared/services/file-input.service";
-import { MarketListStore } from "src/app/market-list/shared/stores/market-list.store";
+import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
 import { csvToObjectArray } from "src/app/shared/utils/format-csv.utils";
 import { Product } from "src/app/shared/models/product";
 import { MarketList } from "src/app/shared/models/market-list";
-import { ViewedProductsStore } from "src/app/market-list/shared/stores/viewed-products.store";
+import { ViewedProductsStore } from "src/app/market-list/shared/services/stores/viewed-products.store";
 
 @Component({
   selector: 'app-import-file-input',

@@ -5,8 +5,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MarketListRoutingModule } from './market-list.routing.module';
 
 import { MarketListComponent } from './market-list.component';
-import { ViewedProductsStore } from './shared/stores/viewed-products.store';
-import { MarketListStore } from './shared/stores/market-list.store';
+import { ViewedProductsStore } from './shared/services/stores/viewed-products.store';
+import { MarketListStore } from './shared/services/stores/market-list.store';
 
 import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
 import { FilterButtonComponent } from './view-market-list/filter-buttons/filter-button.component';

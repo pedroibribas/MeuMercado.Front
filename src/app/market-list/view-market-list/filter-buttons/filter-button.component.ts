@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ViewedProductsStore } from 'src/app/market-list/shared/stores/viewed-products.store';
-import { MarketListStore } from 'src/app/market-list/shared/stores/market-list.store';
+import { ViewedProductsStore } from 'src/app/market-list/shared/services/stores/viewed-products.store';
+import { MarketListStore } from 'src/app/market-list/shared/services/stores/market-list.store';
 
 import { Product } from '../../../shared/models/product';
 import { IFilterButtonFactory } from '../../shared/interfaces/filter-button-factory.interface';

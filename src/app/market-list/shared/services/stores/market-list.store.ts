@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { MarketList } from "../../../shared/models/market-list";
+import { MarketList } from "../../../../shared/models/market-list";
 import { StoreService } from "src/app/shared/services/templates/store.service";
 import { LocalStorageService } from "src/app/shared/services/local-storage.service";
 
