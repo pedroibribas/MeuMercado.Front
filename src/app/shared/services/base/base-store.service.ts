@@ -1,4 +1,4 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 export class BaseStoreService<T> {
 
@@ -6,13 +6,13 @@ export class BaseStoreService<T> {
   private initialState: T;
 
   constructor(initialState: T) {
+    this.subject = new BehaviorSubject<T>(initialState);
     this.initialState = initialState;
-    this.subject = new BehaviorSubject<T>(this.initialState);
   }
 
   protected get subjectValue(): T { return this.subject.value };
 
-  public load() {
+  public load(): Observable<T> {
     return this.subject.asObservable();
   }
 

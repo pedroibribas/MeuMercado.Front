@@ -21,24 +21,18 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
   constructor(
     private marketListStore: MarketListStore,
     private viewedProductsStore: ViewedProductsStore,
-    private initModuleDataService: InitModuleDataService
   ) { }
 
   ngOnInit(): void {
-debugger
-    this.initModuleDataService.load();
-
     this.marketListSubscription = this.marketListStore.load()
       .subscribe((l) => 
         this.marketList = l);
-
     this.viewedProductsSubscription = this.viewedProductsStore.load()
       .subscribe((p) =>
         this.viewedProducts = p);
   }
   
   ngOnDestroy(): void {
-    console.log('destroyed')
     this.marketListSubscription.unsubscribe();
     this.viewedProductsSubscription.unsubscribe();
   }  

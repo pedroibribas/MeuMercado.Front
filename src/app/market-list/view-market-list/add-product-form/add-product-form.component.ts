@@ -30,7 +30,6 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.marketListStoreSubscription = this.marketListStore.load()
       .subscribe((l) => {
-debugger
         this.productsDto = l.products ?? [];
         this.productTypesOptions = getArrayOfObjectArrayByKey(this.productsDto, 'type');
       });

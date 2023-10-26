@@ -17,7 +17,6 @@ import { ExportFileButtonComponent } from './view-market-list/export-file-button
 import { ImportFileInputComponent } from './view-market-list/import-file-input/import-file-input.component';
 import { ToolbarComponent } from './view-market-list/toolbar/toolbar.component';
 import { AddProductFormComponent } from './view-market-list/add-product-form/add-product-form.component';
-import { OpenModalButtonComponent } from './view-market-list/open-modal-button/open-modal-button.component';
 import { InitModuleDataService } from './shared/services/init-module-data.service';
 
 
@@ -31,7 +30,6 @@ import { InitModuleDataService } from './shared/services/init-module-data.servic
     ImportFileInputComponent,
     ExportFileButtonComponent,
     AddProductFormComponent,
-    OpenModalButtonComponent,
     ToolbarComponent
   ],
   imports: [
