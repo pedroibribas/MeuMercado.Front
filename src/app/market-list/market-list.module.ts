@@ -7,6 +7,7 @@ import { MarketListRoutingModule } from './market-list.routing.module';
 import { MarketListComponent } from './market-list.component';
 import { ViewedProductsStore } from './shared/services/stores/viewed-products.store';
 import { MarketListStore } from './shared/services/stores/market-list.store';
+import { LocalMarketListService } from './shared/services/local-market-list.service';
 
 import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
 import { FilterButtonComponent } from './view-market-list/filter-buttons/filter-button.component';
@@ -17,6 +18,7 @@ import { ImportFileInputComponent } from './view-market-list/import-file-input/i
 import { ToolbarComponent } from './view-market-list/toolbar/toolbar.component';
 import { AddProductFormComponent } from './view-market-list/add-product-form/add-product-form.component';
 import { OpenModalButtonComponent } from './view-market-list/open-modal-button/open-modal-button.component';
+import { InitModuleDataService } from './shared/services/init-module-data.service';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { OpenModalButtonComponent } from './view-market-list/open-modal-button/o
   ],
   providers: [
     MarketListStore,
-    ViewedProductsStore
+    ViewedProductsStore,
+    LocalMarketListService,
+    InitModuleDataService
   ]
 })
 export class MarketListModule { }
