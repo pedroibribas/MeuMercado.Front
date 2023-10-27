@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
@@ -5,7 +6,7 @@ import { Subscription } from "rxjs";
 import { getArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
 import { AlertService } from "src/app/components/alert/alert.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
-import { ViewedProductsStore } from "../../shared/services/stores/viewed-products.store";
+import { ViewedProductsStore } from "../shared/services/stores/viewed-products.store";
 import { Product } from "src/app/shared/models/product.model";
 
 
@@ -24,7 +25,8 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     private formBuilder: FormBuilder,
     private marketListStore: MarketListStore,
     private viewedProductsStore: ViewedProductsStore,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private location: Location
   ) { }
 
   ngOnInit(): void {
@@ -42,14 +44,14 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       name: ['', [Validators.required]],
-      brand: ['', [Validators.required]],
+      amount: ['', [Validators.required]],
       type: ['', [Validators.required]]
     });
   }
 
   get name() { return this.form.get('name'); }
-  get brand() { return this.form.get('brand'); }
   get type() { return this.form.get('type'); }
+  get amount() { return this.form.get('amount'); }
 
 
   public updateTypeFieldBySelectedProductType(event: Event): void {
@@ -83,7 +85,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     const formData = this.form.getRawValue() as Product
     return new Product({
       name: formData.name,
-      brand: formData.brand,
+      brand: "",
       type: formData.type,
       amount: ""
     });
@@ -95,6 +97,10 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
       .updateLocalStorage();
     this.viewedProductsStore
       .setState(this.productsDto);
+  }
+
+  protected returnPage() {
+    this.location.back();
   }
 
 }

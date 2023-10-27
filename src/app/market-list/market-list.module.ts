@@ -16,7 +16,7 @@ import { ProductSelectionButtonComponent } from './view-market-list/product-sele
 import { ExportFileButtonComponent } from './view-market-list/export-file-button/export-file-button.component';
 import { ImportFileInputComponent } from './view-market-list/import-file-input/import-file-input.component';
 import { ToolbarComponent } from './view-market-list/toolbar/toolbar.component';
-import { AddProductFormComponent } from './view-market-list/add-product-form/add-product-form.component';
+import { AddProductFormComponent } from './add-product-form/add-product-form.component';
 import { InitModuleDataService } from './shared/services/init-module-data.service';
 
 

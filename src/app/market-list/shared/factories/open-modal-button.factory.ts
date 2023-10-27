@@ -1,4 +1,4 @@
-import { AddProductFormComponent } from "../../view-market-list/add-product-form/add-product-form.component";
+import { AddProductFormComponent } from "../../add-product-form/add-product-form.component";
 import { EModalType } from "../enums/modal-type.enum";
 import { IOpenModalButtonFactory } from "../interfaces/open-modal-button-factory.interface";
 
