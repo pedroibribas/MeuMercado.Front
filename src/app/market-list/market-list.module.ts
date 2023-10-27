@@ -30,7 +30,8 @@ import { InitModuleDataService } from './shared/services/init-module-data.servic
     ImportFileInputComponent,
     ExportFileButtonComponent,
     AddProductFormComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    AddProductFormComponent
   ],
   imports: [
     CommonModule,

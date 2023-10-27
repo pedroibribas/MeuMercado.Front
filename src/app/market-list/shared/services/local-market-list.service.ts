@@ -36,4 +36,20 @@ export class LocalMarketListService {
     }
     return this;
   }
+
+  public logMarketListStore() {
+    this.marketListStore.load().subscribe((m) => {
+      console.warn('### MarketList atualizado ###');
+      console.table(m);
+      console.warn('### MarketList.products atualizado ###');
+      console.table(m.products);
+    });
+  }
+
+  public logViewedProductsStore() {
+    this.viewedProductsStore.load().subscribe((p) => {
+      console.warn('### ViewedProducts atualizado ###');
+      console.table(p);
+    });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit} from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
@@ -19,7 +19,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   protected productTypesOptions: string[] = [];
   private productsDto: Product[] = [];
   private marketListStoreSubscription!: Subscription;
-    
+
   constructor(
     private formBuilder: FormBuilder,
     private marketListStore: MarketListStore,
@@ -34,7 +34,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
         this.productTypesOptions = getArrayOfObjectArrayByKey(this.productsDto, 'type');
       });
   }
-  
+
   ngOnDestroy(): void {
     this.marketListStoreSubscription.unsubscribe();
   }
@@ -61,15 +61,13 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     if (this.setInvalidation())
       return;
 
-    const newProduct: Product = this.getNewProduct(
-      this.form.getRawValue() as Product);
-debugger
+    const newProduct: Product = this.getNewProductByFormData();
     this.productsDto.push(newProduct);
 
-    this.setMarketListStore();
-      
+    this.updateModuleData();
+
     this.alertService.success(
-      `${newProduct} adicionado.`);
+      `${newProduct.name} adicionado.`);
 
     this.form.reset();
   }
@@ -81,7 +79,8 @@ debugger
     return false;
   }
 
-  private getNewProduct(formData: Product): Product {
+  private getNewProductByFormData(): Product {
+    const formData = this.form.getRawValue() as Product
     return new Product({
       name: formData.name,
       brand: formData.brand,
@@ -90,14 +89,12 @@ debugger
     });
   }
 
-  private setMarketListStore(): void {
+  private updateModuleData(): void {
     this.marketListStore
       .setField('products', this.productsDto)
       .updateLocalStorage();
-  }
-  
-  private setViewedProductsStore(): void {
     this.viewedProductsStore
       .setState(this.productsDto);
   }
+
 }

@@ -10,10 +10,23 @@ export class InitModuleDataService {
     private localMarketListService: LocalMarketListService
   ) { }
 
-  public load() {
+  public load(): this {
     this.localMarketListService
       .getLocalStorage()
       .setMarketListStore()
       .setViewedProductsStore();
+
+    return this;
   }
+
+  public debugMarketListStore(): this {
+    this.localMarketListService.logMarketListStore();
+    return this;
+  }
+
+  public debugViewedProductsStore(): this {
+    this.localMarketListService.logViewedProductsStore();
+    return this;
+  }
+
 }
