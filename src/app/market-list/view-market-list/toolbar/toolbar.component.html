@@ -1,50 +1,66 @@
-<footer class="fixed-bottom border-top border-2 footer mt-auto py-3 bg-body-tertiary">
-    <div class="btn-toolbar" role="toolbar">
-        <div class="btn-group dropup" role="group">
+<footer
+    class="fixed-bottom border-top border-2 footer mt-auto py-3 bg-body-tertiary"
+>
+    <div class="btn-toolbar row" role="toolbar">
+        <div class="col-auto me-auto">
+            <div class="btn-group dropup" role="group">
+                <button type="button" class="btn px-3" data-bs-toggle="dropdown">
+                    <fa-icon class="fs-1" [icon]="faFileArrowDown"></fa-icon>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="dropdown-item">
+                            <app-import-file-input></app-import-file-input>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown-item">
+                            <app-export-file-button></app-export-file-button>
+                        </div>
+                        <div class="dropdown-item">
+                            <app-export-file-button exportProductsFrom="view"></app-export-file-button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="btn-group dropup" role="group">
+                <button type="button" class="btn px-3" data-bs-toggle="dropdown">
+                    <fa-icon class="fs-1" [icon]="faFilter"></fa-icon>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="dropdown-item">
+                            <app-filter-button [type]="filterBtnDefault"></app-filter-button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown-item">
+                            <app-filter-button [type]="filterBtnSelected"></app-filter-button>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="dropdown-item">
+                            <app-filter-button [type]="filterBtnPending"></app-filter-button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="btn-group dropup col-auto" role="group">
             <button type="button" class="btn px-3" data-bs-toggle="dropdown">
-                <fa-icon class="fs-1" [icon]="faFileArrowDown"></fa-icon>
+                <fa-icon class="fs-1" [icon]="faGear"></fa-icon>
             </button>
             <ul class="dropdown-menu">
                 <li>
                     <div class="dropdown-item">
-                        <app-import-file-input></app-import-file-input>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown-item">
-                        <app-export-file-button></app-export-file-button>
-                    </div>
-                    <div class="dropdown-item">
-                        <app-export-file-button exportProductsFrom="view"></app-export-file-button>
+                        <a
+                            class="btn"
+                            routerLink="../newproduct"
+                        >+ Produto</a>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="btn-group dropup" role="group">
-            <button type="button" class="btn px-3" data-bs-toggle="dropdown">
-                <fa-icon class="fs-1" [icon]="faFilter"></fa-icon>
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <div class="dropdown-item">
-                        <app-filter-button [type]="filterBtnDefault"></app-filter-button>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown-item">
-                        <app-filter-button [type]="filterBtnSelected"></app-filter-button>
-                    </div>
-                </li>
-                <li>
-                    <div class="dropdown-item">
-                        <app-filter-button [type]="filterBtnPending"></app-filter-button>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <button type="button" class="btn px-3">
-            <fa-icon class="fs-1" [icon]="faGear"></fa-icon>
-        </button>
     </div>
 </footer>
 
