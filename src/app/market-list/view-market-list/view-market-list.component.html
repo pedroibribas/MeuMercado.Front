@@ -6,10 +6,10 @@
 <table class="table font-monospace">
     <thead>
         <tr>
-            <th scope="col">#</th>
+            <th scope="col"><fa-icon [icon]="faCartShopping"></fa-icon></th>
             <th scope="col">Produto</th>
-            <th scope="col">Marca</th>
-            <th scope="col">#</th>
+            <th scope="col">Qtd</th>
+            <th scope="col"><fa-icon [icon]="faClipboardCheck"></fa-icon></th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
                 ></app-product-selection-button>
             </td>
             <td class="text-wrap">{{ p.name }}</td>
-            <td class="text-wrap">{{ p.brand }}</td>            
+            <td class="text-wrap">{{ p.amount }}</td>
             <td>
                 <app-product-pendency-button
                     [isProductPending]="p.isPending"

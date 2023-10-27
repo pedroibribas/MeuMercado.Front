@@ -49,7 +49,7 @@ export class FilterButtonComponent implements OnInit {
   private viewPendingProducts(): void {
     if (this.allProducts.length !== 0) {
       this.viewedProductsStore.setState(
-        this.allProducts.filter((p) => p.isSelected && !p.isPending)
+        this.allProducts.filter((p) => p.isSelected && p.isPending)
       );
     }
   }

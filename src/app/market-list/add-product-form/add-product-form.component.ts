@@ -87,7 +87,7 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
       name: formData.name,
       brand: "",
       type: formData.type,
-      amount: ""
+      amount: formData.amount
     });
   }
 

@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs';
 
 import { MarketListStore } from '../shared/services/stores/market-list.store';
 import { ViewedProductsStore } from '../shared/services/stores/viewed-products.store';
-import { InitModuleDataService } from '../shared/services/init-module-data.service';
 import { Product } from 'src/app/shared/models/product.model';
 import { MarketList } from 'src/app/shared/models/market-list.model';
+import { faCartShopping, faClipboardCheck } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -15,6 +15,8 @@ import { MarketList } from 'src/app/shared/models/market-list.model';
 export class ViewMarketListComponent implements OnInit, OnDestroy {
   protected marketList = {} as MarketList;
   protected viewedProducts: Product[] = [];
+  protected faClipboardCheck = faClipboardCheck;
+  protected faCartShopping = faCartShopping;
   private marketListSubscription!: Subscription;
   private viewedProductsSubscription!: Subscription;
 
