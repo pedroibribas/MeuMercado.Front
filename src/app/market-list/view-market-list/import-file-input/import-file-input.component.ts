@@ -6,6 +6,7 @@ import { csvToObjectArray } from "src/app/shared/utils/format-csv.utils";
 import { ViewedProductsStore } from "src/app/market-list/shared/services/stores/viewed-products.store";
 import { Product } from "src/app/shared/models/product.model";
 import { MarketList } from "src/app/shared/models/market-list.model";
+import { MarketListDto } from "src/app/shared/models/market-list-dto.model";
 
 @Component({
   selector: 'app-import-file-input',
@@ -20,29 +21,27 @@ export class ImportFileInputComponent {
     private readFileService: ReadFileService
   ) { }
   
-  public readTextFile(event: Event) {
+  protected readTextFile(event: Event) {
     const fileList = this.fileInputService.getFileList(event);
     if (fileList) {
-      this.readFileService.readAsTextAsync(fileList[0])
-        .then(
-          (text) => typeof text !== 'undefined'
-            && this.updateMarketListByCsvText(text)
-        );
+      this.readFileService
+        .readAsTextAsync(fileList[0])
+        .then((text) => this.updateMarketListStateByText(text));
     }
   }
 
-  private updateMarketListByCsvText(text: string) {
-    const marketListDto = {} as MarketList;
-    const importedProducts: Product[] = csvToObjectArray(text);
-
-    marketListDto.products = [];
-    importedProducts.forEach((i) => marketListDto.products.push(i));
-    
-    this.marketListStore
-      .setState(marketListDto)
-      .updateLocalStorage();
-      
-    this.viewedProductsStore
-      .setState(marketListDto.products);
+  private updateMarketListStateByText(text: string | undefined) {
+    if (typeof text !== 'undefined') {
+        const products: Product[] = csvToObjectArray(text);
+        const marketListDto = new MarketListDto();
+        marketListDto.products = products;
+        
+        this.marketListStore
+          .setState(new MarketList(marketListDto))
+          .updateLocalStorage();
+          
+        this.viewedProductsStore
+          .setState(marketListDto.products);
+    }    
   }
 }
