@@ -12,6 +12,7 @@ import { ReadFileService } from './shared/services/read-file.service';
 import { FileInputService } from './shared/services/file-input.service';
 import { LocalStorageService } from './shared/services/local-storage.service';
 import { ExportFileService } from './shared/services/export-file.service';
+import { CsvHandler } from './shared/utils/csv-handler.utils';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { ExportFileService } from './shared/services/export-file.service';
     ReadFileService,
     ExportFileService,
     LocalStorageService,
+    CsvHandler
   ],
   bootstrap: [AppComponent]
 })

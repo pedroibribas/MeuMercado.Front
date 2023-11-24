@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { csvTable } from "../utils/format-csv.utils";
 import { Product } from "../models/product.model";
+import { CsvHandler } from "../utils/csv-handler.utils";
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +10,11 @@ export class ExportFileService {
   private fileExtension = '';
   private fileContentBlob?: Blob;
 
+  constructor(
+    private csvHandler: CsvHandler) {}
+
   public convertProductsToCsv(products: Product[]): this {
-    this.fileContent = csvTable(products);
+    this.fileContent = this.csvHandler.createCsvTable(products);
     this.fileExtension = 'csv';
     return this;
   }

@@ -2,11 +2,11 @@ import { Component } from "@angular/core";
 import { ReadFileService } from "src/app/shared/services/read-file.service";
 import { FileInputService } from "src/app/shared/services/file-input.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
-import { csvToObjectArray } from "src/app/shared/utils/format-csv.utils";
 import { ViewedProductsStore } from "src/app/market-list/shared/services/stores/viewed-products.store";
 import { Product } from "src/app/shared/models/product.model";
 import { MarketList } from "src/app/shared/models/market-list.model";
 import { MarketListDto } from "src/app/shared/models/market-list-dto.model";
+import { CsvHandler } from "src/app/shared/utils/csv-handler.utils";
 
 @Component({
   selector: 'app-import-file-input',
@@ -18,7 +18,8 @@ export class ImportFileInputComponent {
     private marketListStore: MarketListStore,
     private viewedProductsStore: ViewedProductsStore,
     private fileInputService: FileInputService,
-    private readFileService: ReadFileService
+    private readFileService: ReadFileService,
+    private csvHandler: CsvHandler
   ) { }
   
   protected readTextFile(event: Event) {
@@ -32,7 +33,7 @@ export class ImportFileInputComponent {
 
   private updateMarketListStateByText(text: string | undefined) {
     if (typeof text !== 'undefined') {
-        const products: Product[] = csvToObjectArray(text);
+        const products: Product[] = this.csvHandler.csvToMarketListProducts(text);
         const marketListDto = new MarketListDto();
         marketListDto.products = products;
         
