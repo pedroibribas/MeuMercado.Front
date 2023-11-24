@@ -1,21 +1,28 @@
 import { Component } from "@angular/core";
-import { faFileArrowDown, faFilter, faGear } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faLayerGroup, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faFile } from "@fortawesome/free-regular-svg-icons";
 import { EFilterType } from "src/app/market-list/shared/enums/filter-type.enum";
 import { EModalType } from "../../shared/enums/modal-type.enum";
+import { ESetViewedProductsButton } from "../set-viewed-products-button/set-viewed-products-button.enum";
 
 @Component({
-  selector: 'app-toolbar',
-  templateUrl: './toolbar.component.html'
+    selector: 'app-toolbar',
+    templateUrl: './toolbar.component.html'
 })
 export class ToolbarComponent {
-  
-  public faFileArrowDown = faFileArrowDown;
-  public faFilter = faFilter;
-  public faGear = faGear;
 
-  public filterBtnSelected = EFilterType.selected;
-  public filterBtnPending = EFilterType.pending;
-  public filterBtnDefault = EFilterType.default;
+    protected faFile = faFile;
+    protected faEye = faEye;
+    protected faLayerGroup = faLayerGroup;
+    protected faPen = faPen;
 
-  public addProductModalBtn = EModalType.addProductForm;
+    protected selectAllViewedProducts = ESetViewedProductsButton.selectAllViewedProducts;
+    protected unselectAllViewedProducts = ESetViewedProductsButton.unselectAllViewedProducts;
+
+    protected filterBtnSelected = EFilterType.selected;
+    protected filterBtnPending = EFilterType.pending;
+    protected filterBtnDefault = EFilterType.default;
+
+    protected addProductModalBtn = EModalType.addProductForm;
+
 }
