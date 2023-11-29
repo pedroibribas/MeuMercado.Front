@@ -1,8 +1,18 @@
-## Deploy com GitHub Pages
-<!-- instruções -->
-<!-- referência -->
+## Deploy para o GitHub Pages
 
-## Polimorfismo
+### Workflow
+1. Rodar `ng build --output-path docs --base-href /MeuMercado.Front/` para gerar uma pasta `docs` com o código compilado que é usado pelo GitHub Pages.
+> Alternativamente, rodar o script personalizado `npm run docs`.
+2. Copiar `docs/index.html` e nomeá-lo como `docs/404.html`, senão o GitHub Pages não encontrará as rotas da aplicação e lancará o erro 404.
+
+### Referências
+- [_Deploy to Github Pages_, por Angular.](https://angular.io/guide/deployment#deploy-to-github-pages)
+
+<br>
+
+## Padrões
+
+### Polimorfismo
 ```ts
 // Dicionário
 enum EElement { default, /*...novos*/ }
