@@ -1,6 +1,6 @@
 <header class="m-3">
     <h1>Lista do Mercado</h1>
-    <p>Mostrando a lista do mercado deste navegador.</p>
+    <p>Mostrando sua lista de compras do mercado.</p>
 </header>
 
 <table class="table font-monospace">
@@ -23,8 +23,8 @@
                     (newIsProductSelectedEvent)="toggleProductPropById('isSelected', p.id)"
                 ></app-product-selection-button>
             </td>
-            <td class="text-wrap">{{ p.name }}</td>
-            <td class="text-wrap">{{ p.amount }}</td>
+            <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.name }}</td>
+            <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.amount }}</td>
             <td>
                 <app-product-pendency-button
                     [isProductPending]="p.isPending"
@@ -35,7 +35,7 @@
     </tbody>
 </table>
 
-<div *ngIf="!hasProductsToShow()" class="ms-2">
+<div *ngIf="!hasProductsToShow()" class="ms-2 text-secondary">
     Nenhum produto para mostrar.
 </div>
 

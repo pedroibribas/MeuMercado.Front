@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Subscription } from "rxjs";
 
-import { getArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
+import { getStringArrayOfObjectArrayByKey } from "src/app/shared/utils/array.utils";
 import { AlertService } from "src/app/components/alert/alert.service";
 import { MarketListStore } from "src/app/market-list/shared/services/stores/market-list.store";
 import { ViewedProductsStore } from "../shared/services/stores/viewed-products.store";
@@ -33,7 +33,10 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
     this.marketListStoreSubscription = this.marketListStore.load()
       .subscribe((l) => {
         this.productsDto = l.products ?? [];
-        this.productTypesOptions = getArrayOfObjectArrayByKey(this.productsDto, 'type');
+        this.productTypesOptions = getStringArrayOfObjectArrayByKey(
+            this.productsDto,
+            'type'
+          ).sort();
       });
   }
 
@@ -53,13 +56,16 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
   get type() { return this.form.get('type'); }
   get amount() { return this.form.get('amount'); }
 
+  protected updateTypeField(type: string): void {
+    this.type?.setValue(type);
+  }
 
-  public updateTypeFieldBySelectedProductType(event: Event): void {
+  protected updateTypeFieldByHtmlSelectElValue(event: Event): void {
     const selectElement = event.currentTarget as HTMLSelectElement;
     this.type?.setValue(selectElement.value);
   }
 
-  public submit(): void {
+  protected submit(): void {
     if (this.setInvalidation())
       return;
 
@@ -70,8 +76,8 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
 
     this.alertService.success(
       `${newProduct.name} adicionado.`);
-
-    this.form.reset();
+    
+    this.resetForm();
   }
 
   private setInvalidation(): boolean {
@@ -97,6 +103,11 @@ export class AddProductFormComponent implements OnInit, OnDestroy {
       .updateLocalStorage();
     this.viewedProductsStore
       .setState(this.productsDto);
+  }
+
+  private resetForm(): void {
+    const previousType = this.type?.value;
+    this.form.reset({ type: previousType });
   }
 
   protected returnPage() {

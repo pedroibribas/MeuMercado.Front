@@ -27,21 +27,21 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.marketListSubscription = this.marketListStore.load()
-      .subscribe((l) => 
+      .subscribe((l) =>
         this.marketList = l);
     this.viewedProductsSubscription = this.viewedProductsStore.load()
       .subscribe((p) =>
         this.viewedProducts = p);
   }
-  
+
   ngOnDestroy(): void {
     this.marketListSubscription.unsubscribe();
     this.viewedProductsSubscription.unsubscribe();
-  }  
+  }
 
   public toggleProductPropById(prop: 'isSelected' | 'isPending', id: string): void {
     const productIndex = this.marketList.products.findIndex((p) => p.id === id);
-    this.marketList.products[productIndex][prop] = !this.marketList.products[productIndex][prop];    
+    this.marketList.products[productIndex][prop] = !this.marketList.products[productIndex][prop];
     this.marketListStore
       .setState(this.marketList)
       .updateLocalStorage();
@@ -49,5 +49,15 @@ export class ViewMarketListComponent implements OnInit, OnDestroy {
 
   public hasProductsToShow(): boolean {
     return this.viewedProducts != null && this.viewedProducts.length > 0;
+  }
+
+  protected tableDataClassByProductState(isSelected: boolean, isPending: boolean): string {
+    let classes = 'text-wrap';
+
+    if (isSelected && isPending) {
+      return classes += ' text-body-emphasis';
+    }
+    
+    return classes += ' text-body-tertiary';
   }
 }

@@ -18,6 +18,7 @@ import { ImportFileInputComponent } from './view-market-list/import-file-input/i
 import { ToolbarComponent } from './view-market-list/toolbar/toolbar.component';
 import { AddProductFormComponent } from './add-product-form/add-product-form.component';
 import { InitModuleDataService } from './shared/services/init-module-data.service';
+import { SetViewedProductsButtonComponent } from './view-market-list/set-viewed-products-button/set-viewed-products-button.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { InitModuleDataService } from './shared/services/init-module-data.servic
     ImportFileInputComponent,
     ExportFileButtonComponent,
     AddProductFormComponent,
+    SetViewedProductsButtonComponent,
     ToolbarComponent,
     AddProductFormComponent
   ],

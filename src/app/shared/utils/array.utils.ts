@@ -32,3 +32,19 @@ export function getArrayOfObjectArrayByKey(objArray: IObject[], key: keyof IObje
 
     return uniques;
 }
+
+
+export function getStringArrayOfObjectArrayByKey(objArray: IObject[], key: keyof IObject): any[] {
+    const arrayByKey: any[] = [];
+    const uniques: any[] = [];
+
+    objArray.forEach((x) =>
+        arrayByKey.push(x[key]));
+
+    arrayByKey.forEach((x: string) => {
+        x.toLowerCase();
+        !uniques.includes(x) && uniques.push(x);
+    });
+
+    return uniques;
+}
