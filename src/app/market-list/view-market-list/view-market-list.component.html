@@ -2,41 +2,41 @@
     <h1>Lista do Mercado</h1>
     <p>Mostrando sua lista de compras do mercado.</p>
 </header>
-
-<table class="table font-monospace">
-    <thead>
-        <tr>
-            <th scope="col"><fa-icon [icon]="faCartShopping"></fa-icon></th>
-            <th scope="col">Produto</th>
-            <th scope="col">Qtd</th>
-            <th scope="col"><fa-icon [icon]="faClipboardCheck"></fa-icon></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr
-            *ngFor="let p of viewedProducts; index as i" 
-            [class.text-decoration-line-through]="!p.isPending"
-        >
-            <td>
-                <app-product-selection-button
-                    [isProductSelected]="p.isSelected"
-                    (newIsProductSelectedEvent)="toggleProductPropById('isSelected', p.id)"
-                ></app-product-selection-button>
-            </td>
-            <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.name }}</td>
-            <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.amount }}</td>
-            <td>
-                <app-product-pendency-button
-                    [isProductPending]="p.isPending"
-                    (newIsProductPendingEvent)="toggleProductPropById('isPending', p.id)"
-                ></app-product-pendency-button>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<div *ngIf="!hasProductsToShow()" class="ms-2 text-secondary">
-    Nenhum produto para mostrar.
-</div>
-
+<div class="vh-100">
+  <table class="table font-monospace">
+      <thead>
+          <tr>
+              <th scope="col"><fa-icon [icon]="faCartShopping"></fa-icon></th>
+              <th scope="col">Produto</th>
+              <th scope="col">Qtd</th>
+              <th scope="col"><fa-icon [icon]="faClipboardCheck"></fa-icon></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr
+              *ngFor="let p of viewedProducts; index as i" 
+              [class.text-decoration-line-through]="!p.isPending"
+          >
+              <td>
+                  <app-product-selection-button
+                      [isProductSelected]="p.isSelected"
+                      (newIsProductSelectedEvent)="toggleProductPropById('isSelected', p.id)"
+                  ></app-product-selection-button>
+              </td>
+              <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.name }}</td>
+              <td [class]="tableDataClassByProductState(p.isSelected, p.isPending)">{{ p.amount }}</td>
+              <td>
+                  <app-product-pendency-button
+                      [isProductPending]="p.isPending"
+                      (newIsProductPendingEvent)="toggleProductPropById('isPending', p.id)"
+                  ></app-product-pendency-button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+  
+  <div *ngIf="!hasProductsToShow()" class="ms-2 text-secondary">
+      Nenhum produto para mostrar.
+  </div>
+</div>  
 <app-toolbar></app-toolbar>

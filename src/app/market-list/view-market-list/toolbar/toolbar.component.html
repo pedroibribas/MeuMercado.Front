@@ -1,59 +1,61 @@
-<footer class="footer mt-auto border-top border-2 bg-body-tertiary">
-  <div class="container">
-    <ul class="nav" role="toolbar">
-      <li class="btn-toolbar py-3">
-        <div class="btn-group dropup" role="group">
-          <button type="button" class="btn" data-bs-toggle="dropdown">
-            <fa-icon [icon]="faPen"></fa-icon>
-          </button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">
-              <a class="btn" routerLink="../newproduct">Adicionar</a>
-            </li>
-            <li class="dropdown-item">
-              <a class="btn" routerLink="../remove">Remover Todos</a>
-            </li>
-          </ul>
-        </div>
-      </li>
+<div class="sticky-bottom">
+  <footer class="footer bg-body-tertiary border-top border-2">
+    <div class="container">
+      <ul class="nav" role="toolbar">
+        <li class="btn-toolbar py-3">
+          <div class="btn-group dropup" role="group">
+            <button type="button" class="btn" data-bs-toggle="dropdown">
+              <fa-icon [icon]="faPen"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <a class="btn" routerLink="../newproduct">Adicionar</a>
+              </li>
+              <li class="dropdown-item">
+                <a class="btn" routerLink="../remove">Remover Todos</a>
+              </li>
+            </ul>
+          </div>
+        </li>
 
-      <li class="btn-toolbar py-3">
-        <div class="btn-group dropup" role="group">
-          <button type="button" class="btn" data-bs-toggle="dropdown">
-            <fa-icon [icon]="faEye"></fa-icon>
-          </button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">
-              <app-filter-button [type]="filterBtnSelected"></app-filter-button>
-            </li>
-            <li class="dropdown-item">
-              <app-filter-button [type]="filterBtnPending"></app-filter-button>
-            </li>
-            <li class="dropdown-item">
-              <app-filter-button [type]="filterBtnDefault"></app-filter-button>
-            </li>
-          </ul>
-        </div>
-      </li>
+        <li class="btn-toolbar py-3">
+          <div class="btn-group dropup" role="group">
+            <button type="button" class="btn" data-bs-toggle="dropdown">
+              <fa-icon [icon]="faEye"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <app-filter-button [type]="filterBtnSelected"></app-filter-button>
+              </li>
+              <li class="dropdown-item">
+                <app-filter-button [type]="filterBtnPending"></app-filter-button>
+              </li>
+              <li class="dropdown-item">
+                <app-filter-button [type]="filterBtnDefault"></app-filter-button>
+              </li>
+            </ul>
+          </div>
+        </li>
 
-      <li class="btn-toolbar py-3">
-        <div class="btn-group dropup" role="group">
-          <button type="button" class="btn" data-bs-toggle="dropdown">
-            <fa-icon [icon]="faFile"></fa-icon>
-          </button>
-          <ul class="dropdown-menu">
-            <li class="dropdown-item">
-              <app-import-file-input></app-import-file-input>
-            </li>
-            <li class="dropdown-item">
-              <app-export-file-button></app-export-file-button>
-            </li>
-            <li class="dropdown-item">
-              <app-export-file-button exportProductsFrom="view"></app-export-file-button>
-            </li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-</footer>
+        <li class="btn-toolbar py-3">
+          <div class="btn-group dropup" role="group">
+            <button type="button" class="btn" data-bs-toggle="dropdown">
+              <fa-icon [icon]="faFile"></fa-icon>
+            </button>
+            <ul class="dropdown-menu">
+              <li class="dropdown-item">
+                <app-import-file-input></app-import-file-input>
+              </li>
+              <li class="dropdown-item">
+                <app-export-file-button></app-export-file-button>
+              </li>
+              <li class="dropdown-item">
+                <app-export-file-button exportProductsFrom="view"></app-export-file-button>
+              </li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
