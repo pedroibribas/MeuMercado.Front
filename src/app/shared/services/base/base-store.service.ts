@@ -21,6 +21,10 @@ export class BaseStoreService<T> {
     return this;
   }
 
+  /**
+   * Reseta o valor do BehaviorSubject<T> para o estado inicial.
+   * @returns Call-chain.
+   */
   public clearState(): this {
     this.subject.next(this.initialState);
     return this;

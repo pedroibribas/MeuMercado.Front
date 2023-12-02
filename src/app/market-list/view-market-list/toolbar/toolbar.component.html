@@ -1,15 +1,16 @@
 <footer class="row footer border-top border-2 mt-auto py-3 bg-body-tertiary" role="toolbar">
 
-    <div class="col-1 btn-toolbar" role="toolbar">
+    <div class="col-1 btn-toolbar" role="actions">
         <div class="btn-group dropup" role="group">
             <button type="button" class="btn" data-bs-toggle="dropdown">
                 <fa-icon [icon]="faPen"></fa-icon>
             </button>
             <ul class="dropdown-menu">
                 <li class="dropdown-item">
-                    <a class="btn" routerLink="../newproduct">
-                        +Produto
-                    </a>
+                    <a class="btn" routerLink="../newproduct">Adicionar</a>
+                </li>
+                <li class="dropdown-item">
+                    <a class="btn" routerLink="../remove">Remover Todos</a>
                 </li>
             </ul>
         </div>

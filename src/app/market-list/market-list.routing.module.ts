@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { MarketListComponent } from './market-list.component';
 import { ViewMarketListComponent } from './view-market-list/view-market-list.component';
 import { AddProductFormComponent } from './add-product-form/add-product-form.component';
+import { RemoveAllModalComponent } from './view-market-list/remove-all-modal/remove-all-modal.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
       {
         path: 'newproduct',
         component: AddProductFormComponent
+      },
+      {
+        path: 'remove',
+        component: RemoveAllModalComponent
       }
     ]
   }

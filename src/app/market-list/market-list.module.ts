@@ -19,6 +19,7 @@ import { ToolbarComponent } from './view-market-list/toolbar/toolbar.component';
 import { AddProductFormComponent } from './add-product-form/add-product-form.component';
 import { InitModuleDataService } from './shared/services/init-module-data.service';
 import { SetViewedProductsButtonComponent } from './view-market-list/set-viewed-products-button/set-viewed-products-button.component';
+import { RemoveAllModalComponent } from './view-market-list/remove-all-modal/remove-all-modal.component';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { SetViewedProductsButtonComponent } from './view-market-list/set-viewed-
     AddProductFormComponent,
     SetViewedProductsButtonComponent,
     ToolbarComponent,
-    AddProductFormComponent
+    RemoveAllModalComponent
   ],
   imports: [
     CommonModule,
